@@ -4,7 +4,7 @@ package com.zs198893.netstar_oa;
  * @author zhangshuai
  *
  */
-public interface CommonActivityInterface {
+public interface BaseActivityInterface {
 	/**
 	 * ≥ı ºªØview
 	 */

@@ -1,32 +1,25 @@
 package com.zs198893.netstar_oa.login.activity;
 
-import roboguice.activity.RoboActivity;
 import roboguice.inject.InjectView;
-
-import com.google.inject.Inject;
-import com.zs198893.netstar_oa.CommonActivityInterface;
-import com.zs198893.netstar_oa.R;
-import com.zs198893.netstar_oa.R.layout;
-import com.zs198893.netstar_oa.R.menu;
-import com.zs198893.netstar_oa.login.engine.LoginEngine;
-import com.zs198893.netstar_oa.model.CommonResult;
-
 import android.os.AsyncTask;
-import android.os.Bundle;
-import android.app.Activity;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.inject.Inject;
+import com.zs198893.netstar_oa.BaseActivity;
+import com.zs198893.netstar_oa.R;
+import com.zs198893.netstar_oa.login.engine.LoginEngine;
+import com.zs198893.netstar_oa.model.CommonResult;
 /**
  * OA 系统办公系统
  * 登陆界面
  * @author zhangshuai
  *
  */
-public class LoginActivity extends RoboActivity  implements CommonActivityInterface {
+public class LoginActivity extends BaseActivity{
 	/**
 	 * 配置按钮
 	 */
@@ -59,25 +52,10 @@ public class LoginActivity extends RoboActivity  implements CommonActivityInterf
 	 * 点击监听类
 	 */
 	private OnLoginPageClickListener onLoginPageClickListener = new OnLoginPageClickListener();
-	
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.login_activity_main);
-		//初始化view
-		subInitView();
-		//初始化参数
-		subInitParam();
-		//初始化 onClick
-		subSetOnclick();
-		//做一些动作
-		subRunSomeThing();
-	}
 
 	@Override
 	public void subInitView() {
-		// TODO Auto-generated method stub
-		
+		setContentView(R.layout.login_activity_main);
 	}
 
 	@Override
