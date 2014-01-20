@@ -13,6 +13,8 @@ import com.zs198893.netstar_oa.BaseActivity;
 import com.zs198893.netstar_oa.R;
 import com.zs198893.netstar_oa.login.engine.LoginEngine;
 import com.zs198893.netstar_oa.model.CommonResult;
+import com.zs198893.netstar_oa.tools.DialogTool;
+import com.zs198893.netstar_oa.tools.DialogTool.WaittingAlertDialog;
 /**
  * OA 系统办公系统
  * 登陆界面
@@ -52,6 +54,14 @@ public class LoginActivity extends BaseActivity{
 	 * 点击监听类
 	 */
 	private OnLoginPageClickListener onLoginPageClickListener = new OnLoginPageClickListener();
+	/**
+	 * 弹出框工具
+	 */
+	private DialogTool dialogTool;
+	/**
+	 * 等待框
+	 */
+	private DialogTool.WaittingAlertDialog waittingAlertDialog;
 
 	@Override
 	public void subInitView() {
@@ -60,8 +70,7 @@ public class LoginActivity extends BaseActivity{
 
 	@Override
 	public void subInitParam() {
-		// TODO Auto-generated method stub
-		
+		dialogTool = new DialogTool(this);
 	}
 
 	@Override
@@ -86,6 +95,9 @@ public class LoginActivity extends BaseActivity{
 			switch(v.getId()){
 			case R.id.login_bt_submit:
 				Toast.makeText(LoginActivity.this, "提交", Toast.LENGTH_SHORT).show();
+				waittingAlertDialog = dialogTool.new WaittingAlertDialog();
+				waittingAlertDialog.getWaittingAlertDialog("测试");
+				waittingAlertDialog.getCommon_dialog_wait_layout()
 				break;
 			case R.id.login_bt_reset:
 				Toast.makeText(LoginActivity.this, "清空", Toast.LENGTH_SHORT).show();
