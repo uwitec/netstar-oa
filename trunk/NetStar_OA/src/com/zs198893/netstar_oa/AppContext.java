@@ -7,10 +7,5 @@ import android.app.Application;
  *
  */
 public class AppContext extends Application {
-	/**
-	 * 实例对象，采用单例模式
-	 */
-	public static AppContext appContext = new AppContext();
-
-	
+ 
 }

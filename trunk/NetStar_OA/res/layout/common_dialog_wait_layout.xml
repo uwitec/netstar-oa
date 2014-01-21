@@ -8,9 +8,11 @@
         android:src="@drawable/common_dialog_bg"/>
 
     <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:id="@+id/common_dialog_wait_iv"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:src="@drawable/loading"
+        android:scaleType="fitXY"
         android:layout_centerInParent="true" />
     <TextView 
         android:id="@+id/common_dialog_wait_tv"
@@ -19,6 +21,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
+        android:textColor="#FFFFFF"
         android:text="提示信息"/>
 
 </RelativeLayout>

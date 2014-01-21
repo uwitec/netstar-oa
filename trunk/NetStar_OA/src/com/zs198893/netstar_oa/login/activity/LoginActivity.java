@@ -1,7 +1,9 @@
 package com.zs198893.netstar_oa.login.activity;
 
 import roboguice.inject.InjectView;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -11,10 +13,11 @@ import android.widget.Toast;
 import com.google.inject.Inject;
 import com.zs198893.netstar_oa.BaseActivity;
 import com.zs198893.netstar_oa.R;
+import com.zs198893.netstar_oa.Main.activity.MainActivity;
 import com.zs198893.netstar_oa.login.engine.LoginEngine;
 import com.zs198893.netstar_oa.model.CommonResult;
 import com.zs198893.netstar_oa.tools.DialogTool;
-import com.zs198893.netstar_oa.tools.DialogTool.WaittingAlertDialog;
+import com.zs198893.netstar_oa.tools.WaittingAlertDialog;
 /**
  * OA 系统办公系统
  * 登陆界面
@@ -45,11 +48,11 @@ public class LoginActivity extends BaseActivity{
 	/**
 	 * 登录的业务逻辑类
 	 */
-	@Inject LoginEngine loginEngine;
+	private LoginEngine loginEngine;
 	/**
 	 * 登录子线程
 	 */
-	private LoginAsyncTask loginAsyncTask = new LoginAsyncTask();
+	private LoginAsyncTask loginAsyncTask;
 	/**
 	 * 点击监听类
 	 */
@@ -61,7 +64,7 @@ public class LoginActivity extends BaseActivity{
 	/**
 	 * 等待框
 	 */
-	private DialogTool.WaittingAlertDialog waittingAlertDialog;
+	private WaittingAlertDialog waittingAlertDialog;
 
 	@Override
 	public void subInitView() {
@@ -71,6 +74,7 @@ public class LoginActivity extends BaseActivity{
 	@Override
 	public void subInitParam() {
 		dialogTool = new DialogTool(this);
+		loginEngine = new LoginEngine(this);
 	}
 
 	@Override
@@ -94,13 +98,13 @@ public class LoginActivity extends BaseActivity{
 		public void onClick(View v) {
 			switch(v.getId()){
 			case R.id.login_bt_submit:
-				Toast.makeText(LoginActivity.this, "提交", Toast.LENGTH_SHORT).show();
-				waittingAlertDialog = dialogTool.new WaittingAlertDialog();
-				waittingAlertDialog.getWaittingAlertDialog("测试");
-				waittingAlertDialog.getCommon_dialog_wait_layout()
+				//登录线程
+				loginAsyncTask = new LoginAsyncTask();
+				loginAsyncTask.execute("");
 				break;
 			case R.id.login_bt_reset:
-				Toast.makeText(LoginActivity.this, "清空", Toast.LENGTH_SHORT).show();
+				et_login_name.setText("");
+				et_login_pwd.setText("");
 				break;
 			}
 		}
@@ -109,11 +113,34 @@ public class LoginActivity extends BaseActivity{
 	 * 登录子线程
 	 */
 	private class LoginAsyncTask extends AsyncTask<String, String, CommonResult>{
-
 		@Override
 		protected CommonResult doInBackground(String... params) {
-			// TODO Auto-generated method stub
-			return null;
+			return loginEngine.authentication(et_login_name.getText().toString().trim(), et_login_pwd.getText().toString().trim());
+		}
+
+		@Override
+		protected void onPostExecute(CommonResult result) {
+			super.onPostExecute(result);
+			waittingAlertDialog.dismiss();
+			waittingAlertDialog = null;
+			//判断登录是否成功
+			if(result.isSuccess()){
+				//成功，跳转界面
+				Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+				startActivity(intent);
+				finish();
+			}else{
+				//失败，显示原因
+				Toast.makeText(LoginActivity.this, (String)result.getResult(), Toast.LENGTH_SHORT).show();
+			}
+		}
+
+		@Override
+		protected void onPreExecute() {
+			//开启等待界面
+			waittingAlertDialog = dialogTool.getWaittingDialog(-1, "登陆中，请稍候。。。");
+			waittingAlertDialog.show();
+			super.onPreExecute();
 		}
 		
 	}

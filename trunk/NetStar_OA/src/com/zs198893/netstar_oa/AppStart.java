@@ -8,6 +8,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 
+import com.zs198893.netstar_oa.config.WebServerConfig;
 import com.zs198893.netstar_oa.login.activity.LoginActivity;
 
 /**
@@ -33,8 +34,8 @@ public class AppStart extends Activity implements BaseActivityInterface {
 
 	@Override
 	public void subInitParam() {
-		// TODO Auto-generated method stub
-
+		//≥ı ºªØ≈‰÷√
+		WebServerConfig.initOAHttpUrl(true);
 	}
 
 	@Override
