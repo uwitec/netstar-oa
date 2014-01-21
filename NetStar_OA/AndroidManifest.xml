@@ -7,7 +7,8 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="18" />
-
+<uses-permission android:name="android.permission.INTERNET"></uses-permission>
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -24,6 +25,8 @@
         </activity>
         <!-- 登录模块 @author:zhangshuai -->
         <activity android:name=".login.activity.LoginActivity" android:theme="@android:style/Theme.Black.NoTitleBar" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation" android:launchMode="singleTask"/>
+    	 <!-- 主功能模块 @author:zhangshuai -->
+        <activity android:name=".Main.activity.MainActivity" android:theme="@android:style/Theme.Black.NoTitleBar" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation" android:launchMode="singleTask"/>
     </application>
 
 </manifest>
