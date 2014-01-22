@@ -13,7 +13,7 @@ import com.zs198893.netstar_oa.BaseActivity;
 import com.zs198893.netstar_oa.R;
 
 public class MainActivity extends BaseActivity {
-	private String[] fName = new String[]{"销售管理"};
+	private String[] fName = new String[]{"销售管理","任务管理","综合管理","日志录入","日志查询"};
 	/**
 	 * 功能表格布局
 	 */
