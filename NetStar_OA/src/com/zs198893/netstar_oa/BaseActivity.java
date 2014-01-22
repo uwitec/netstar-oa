@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.markupartist.android.widget.ActionBar;
 import com.markupartist.android.widget.ActionBar.IntentAction;
-import com.zs198893.netstar_oa.Main.activity.MainActivity;
+import com.zs198893.netstar_oa.main.activity.MainActivity;
 
 /**
  * activity»ùÀà
