@@ -1,7 +1,12 @@
 package com.zs198893.netstar_oa;
 
 import roboguice.activity.RoboActivity;
+import roboguice.inject.InjectView;
 import android.os.Bundle;
+
+import com.markupartist.android.widget.ActionBar;
+import com.markupartist.android.widget.ActionBar.IntentAction;
+import com.zs198893.netstar_oa.Main.activity.MainActivity;
 
 /**
  * activity基类
@@ -11,11 +16,16 @@ import android.os.Bundle;
  */
 public abstract class BaseActivity extends RoboActivity implements
 		BaseActivityInterface {
-
+    public ActionBar actionBar;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		subInitView();
+		actionBar = (ActionBar) findViewById(R.id.actionbar);
+		if(actionBar!=null){
+	        actionBar.setHomeAction(new IntentAction(this, AppManager.getAppManager().createIntent(this,MainActivity.class), R.drawable.ic_title_home_default));
+	        //actionBar.setDisplayHomeAsUpEnabled(true);
+		}
 		subInitParam();
 		subSetOnclick();
 		subRunSomeThing();
@@ -30,4 +40,5 @@ public abstract class BaseActivity extends RoboActivity implements
 		// 结束Activity&从堆栈中移除
 		AppManager.getAppManager().finishActivity(this);
 	}
+
 }

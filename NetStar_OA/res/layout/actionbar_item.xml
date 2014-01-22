@@ -13,8 +13,11 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources>
-    <dimen name="actionbar_height">45dip</dimen>
-    <dimen name="actionbar_item_height">45dip</dimen>
-    <dimen name="actionbar_item_width">45dip</dimen>
-</resources>
+<ImageButton xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/actionbar_item"
+    style="@style/ActionBarItem"
+    android:background="@drawable/actionbar_btn"
+    android:layout_centerVertical="true"
+    android:singleLine="true"
+    android:visibility="visible"
+    />

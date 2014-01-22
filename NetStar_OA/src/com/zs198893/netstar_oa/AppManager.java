@@ -5,9 +5,10 @@ import java.util.Stack;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.Intent;
 
 /**
- * 应用程序Activity管理类：用于Activity管理和应用程序�?�?
+ * 应用程序Activity管理类：用于Activity管理和应用程序�?�?
  * 
  * @author liux (http://my.oschina.net/liux)
  * @version 1.0
@@ -24,15 +25,18 @@ public class AppManager {
 	/**
 	 * 单一实例
 	 */
-	public static AppManager getAppManager() {
+	public static synchronized AppManager getAppManager() {
 		if (instance == null) {
 			instance = new AppManager();
+		}
+		if (activityStack == null) {
+			activityStack = new Stack<Activity>();
 		}
 		return instance;
 	}
 
 	/**
-	 * 添加Activity到堆�?
+	 * 添加Activity到堆�?
 	 */
 	public void addActivity(Activity activity) {
 		if (activityStack == null) {
@@ -42,7 +46,7 @@ public class AppManager {
 	}
 
 	/**
-	 * 获取当前Activity（堆栈中�?���?��压入的）
+	 * 获取当前Activity（堆栈中�?���?��压入的）
 	 */
 	public Activity currentActivity() {
 		Activity activity = activityStack.lastElement();
@@ -50,7 +54,7 @@ public class AppManager {
 	}
 
 	/**
-	 * 结束当前Activity（堆栈中�?���?��压入的）
+	 * 结束当前Activity（堆栈中�?���?��压入的）
 	 */
 	public void finishActivity() {
 		Activity activity = activityStack.lastElement();
@@ -80,7 +84,7 @@ public class AppManager {
 	}
 
 	/**
-	 * 结束�?��Activity
+	 * 结束�?��Activity
 	 */
 	public void finishAllActivity() {
 		for (int i = 0, size = activityStack.size(); i < size; i++) {
@@ -92,7 +96,7 @@ public class AppManager {
 	}
 
 	/**
-	 * �?��应用程序
+	 * �?��应用程序
 	 */
 	public void AppExit(Context context) {
 		try {
@@ -104,4 +108,20 @@ public class AppManager {
 		} catch (Exception e) {
 		}
 	}
+	/**
+	 * 打开一个则关闭一个
+	 * @param context
+	 * @return
+	 */
+    public Intent createIntent(Context context,Class<? extends Activity> activityClass) {
+        Intent intent = new Intent(context, activityClass);
+       for(int i = activityStack.size()-1;i>-1;i--){
+    	   if (activityStack.get(i).getClass().equals(activityClass)) {
+				break;
+			}else{
+				activityStack.remove(i);
+			}
+       } 
+        return intent;
+    }
 }
