@@ -14,7 +14,6 @@ import com.google.inject.Inject;
 import com.zs198893.netstar_oa.BaseActivity;
 import com.zs198893.netstar_oa.R;
 import com.zs198893.netstar_oa.login.engine.LoginEngine;
-import com.zs198893.netstar_oa.main.activity.MainActivity;
 import com.zs198893.netstar_oa.model.CommonResult;
 import com.zs198893.netstar_oa.tools.DialogTool;
 import com.zs198893.netstar_oa.tools.WaittingAlertDialog;
@@ -126,7 +125,7 @@ public class LoginActivity extends BaseActivity{
 			//判断登录是否成功
 			if(result.isSuccess()){
 				//成功，跳转界面
-				Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+				Intent intent = new Intent(LoginActivity.this, com.zs198893.netstar_oa.Main.activity.MainActivity.class);
 				startActivity(intent);
 				finish();
 			}else{

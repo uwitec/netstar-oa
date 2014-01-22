@@ -6,7 +6,6 @@ import android.os.Bundle;
 
 import com.markupartist.android.widget.ActionBar;
 import com.markupartist.android.widget.ActionBar.IntentAction;
-import com.zs198893.netstar_oa.main.activity.MainActivity;
 
 /**
  * activity»ùÀà
@@ -23,7 +22,7 @@ public abstract class BaseActivity extends RoboActivity implements
 		subInitView();
 		actionBar = (ActionBar) findViewById(R.id.actionbar);
 		if(actionBar!=null){
-	        actionBar.setHomeAction(new IntentAction(this, AppManager.getAppManager().createIntent(this,MainActivity.class), R.drawable.ic_title_home_default));
+	        actionBar.setHomeAction(new IntentAction(this, AppManager.getAppManager().createIntent(this,com.zs198893.netstar_oa.Main.activity.MainActivity.class), R.drawable.ic_title_home_default));
 	        //actionBar.setDisplayHomeAsUpEnabled(true);
 		}
 		subInitParam();
