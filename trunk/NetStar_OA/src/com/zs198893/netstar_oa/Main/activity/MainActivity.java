@@ -1,6 +1,7 @@
 package com.zs198893.netstar_oa.Main.activity;
 
 import roboguice.inject.InjectView;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,6 +12,8 @@ import android.widget.Toast;
 
 import com.zs198893.netstar_oa.BaseActivity;
 import com.zs198893.netstar_oa.R;
+import com.zs198893.netstar_oa.daily_log.activity.LogInputActivity;
+import com.zs198893.netstar_oa.daily_log.activity.LogQueryActivity;
 
 public class MainActivity extends BaseActivity {
 	private String[] fName = new String[]{"销售管理","任务管理","综合管理","日志录入","日志查询"};
@@ -34,15 +37,20 @@ public class MainActivity extends BaseActivity {
 	@Override
 	public void subSetOnclick() {
 		main_activity_gv.setOnItemClickListener(new OnItemClickListener() {
-
+			Intent intent;
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				if(arg2==1){
-					
+				intent = new Intent();
+				if(arg2==3){
+					intent.setClass(MainActivity.this, LogInputActivity.class);
+				}else if(arg2==4){
+					intent.setClass(MainActivity.this, LogQueryActivity.class);
 				}else{
 					Toast.makeText(MainActivity.this, "功能尚未开发", Toast.LENGTH_SHORT).show();
+					return ;
 				}
+				startActivity(intent);
 			}
 		});
 	}

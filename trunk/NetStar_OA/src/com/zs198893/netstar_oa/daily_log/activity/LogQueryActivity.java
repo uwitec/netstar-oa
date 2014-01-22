@@ -1,19 +1,18 @@
 package com.zs198893.netstar_oa.daily_log.activity;
 
 import com.zs198893.netstar_oa.BaseActivity;
+import com.zs198893.netstar_oa.R;
 
 public class LogQueryActivity extends BaseActivity {
 
 	@Override
 	public void subInitView() {
-		// TODO Auto-generated method stub
-
+		setContentView(R.layout.daily_log_query_activity);
 	}
 
 	@Override
 	public void subInitParam() {
-		// TODO Auto-generated method stub
-
+        actionBar.setTitle("»’÷æ≤È—Ø");
 	}
 
 	@Override

@@ -1,5 +1,12 @@
 package com.zs198893.netstar_oa.login.engine;
 
+import java.io.IOException;
+import java.net.URI;
+
+import org.springframework.http.HttpMethod;
+import org.springframework.http.client.ClientHttpRequest;
+import org.springframework.http.client.ClientHttpRequestFactory;
+import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
@@ -45,6 +52,8 @@ public class LoginEngine {
 		commonResult = new CommonResult();
 		commonResult.setSuccess(false);
 		restTemplate = new RestTemplate();
+		restTemplate.set
+		((SimpleClientHttpRequestFactory)(restTemplate.getRequestFactory())).setConnectTimeout(WebServerConfig.timeout);
 		restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
 		do{
 			//检查网络
@@ -62,12 +71,21 @@ public class LoginEngine {
 			}catch(Exception e){
 				e.printStackTrace();
 				commonResult.setSuccess(false);
-				commonResult.setResult("出现了错误："+e.getCause().getLocalizedMessage());
+				try{
+					commonResult.setResult("出现了错误："+e.getCause().getLocalizedMessage());
+				}catch(Exception e0){
+					commonResult.setResult("未知错误");
+				}
 			}
 			commonResult.setSuccess(true);
 			commonResult.setResult("登录成功");
 			return commonResult;
 		}while(false);
 		return commonResult;
+	}
+	private class Mofgsd extends  StringHttpMessageConverter {
+
+
+		
 	}
 }

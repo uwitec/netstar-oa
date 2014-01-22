@@ -27,6 +27,10 @@
         <activity android:name=".login.activity.LoginActivity" android:theme="@android:style/Theme.Black.NoTitleBar" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation" android:launchMode="singleTask"/>
     	 <!-- 主功能模块 @author:zhangshuai -->
         <activity android:name=".Main.activity.MainActivity" android:theme="@android:style/Theme.Black.NoTitleBar" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation" android:launchMode="singleTask"/>
-    </application>
+    	<!-- 主功能模块 @author:zhangshuai -->
+        <activity android:name=".daily_log.activity.LogInputActivity" android:theme="@android:style/Theme.Black.NoTitleBar" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation" android:launchMode="singleTask"/>
+   	<!-- 主功能模块 @author:zhangshuai -->
+        <activity android:name=".daily_log.activity.LogQueryActivity" android:theme="@android:style/Theme.Black.NoTitleBar" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation" android:launchMode="singleTask"/>
+        </application>
 
 </manifest>
