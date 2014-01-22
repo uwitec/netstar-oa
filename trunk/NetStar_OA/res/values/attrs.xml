@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2010 Johan Nilsson <http://markupartist.com>
+<!-- Copyright (C) 2011 Johan Nilsson <http://markupartist.com>
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -13,8 +13,9 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
+
 <resources>
-    <dimen name="actionbar_height">45dip</dimen>
-    <dimen name="actionbar_item_height">45dip</dimen>
-    <dimen name="actionbar_item_width">45dip</dimen>
+    <declare-styleable name="ActionBar">
+        <attr name="title" format="string" localization="suggested" />
+    </declare-styleable>
 </resources>

@@ -28,6 +28,7 @@ public class MainActivity extends BaseActivity {
 	@Override
 	public void subInitParam() {
 		main_activity_gv.setAdapter(new ArrayAdapter<String>(MainActivity.this, R.layout.main_grid_item, R.id.main_activity_tv_function_name, fName));
+        actionBar.setTitle("Ö÷Ò³Ãæ");
 	}
 
 	@Override
