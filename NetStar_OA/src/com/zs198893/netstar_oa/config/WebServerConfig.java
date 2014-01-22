@@ -6,6 +6,10 @@ package com.zs198893.netstar_oa.config;
  */
 public class WebServerConfig {
 	/**
+	 * 超时时间
+	 */
+	public static int timeout = 10*1000;
+	/**
 	 * 服务器 头，不加密
 	 */
 	private static String serverHttp= "http://";

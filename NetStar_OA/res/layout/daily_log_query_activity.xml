@@ -3,6 +3,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
+
+    <com.markupartist.android.widget.ActionBar
+        xmlns:app="http://schemas.android.com/apk/lib/com.zs198893.netstar_oa"
+        android:id="@+id/actionbar"
+        style="@style/ActionBar"
+        app:title="@string/some_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" 
+        android:orientation="horizontal">
+
+        <ListView
+            android:id="@+id/daily_log_query_lv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3" >
+        </ListView>
+
+        <TextView
+            android:id="@+id/daily_log_query_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" 
+            android:background="#FFEEEEEE"
+            android:text="这就是日志这就是日志这就是日志这就是日志这就是日志这就是日志这就是日志"/>
+    </LinearLayout>
 
 </LinearLayout>
