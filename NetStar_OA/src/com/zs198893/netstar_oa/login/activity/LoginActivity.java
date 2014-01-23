@@ -18,50 +18,50 @@ import com.zs198893.netstar_oa.model.CommonResult;
 import com.zs198893.netstar_oa.tools.DialogTool;
 import com.zs198893.netstar_oa.tools.WaittingAlertDialog;
 /**
- * OA ÏµÍ³°ì¹«ÏµÍ³
- * µÇÂ½½çÃæ
+ * OA ç³»ç»ŸåŠå…¬ç³»ç»Ÿ
+ * ç™»é™†ç•Œé¢
  * @author zhangshuai
  *
  */
 public class LoginActivity extends BaseActivity{
 	/**
-	 * ÅäÖÃ°´Å¥
+	 * é…ç½®æŒ‰é’®
 	 */
 	@InjectView(R.id.login_bt_config) Button bt_login_config;
 	/**
-	 * ÓÃ»§µÇÂ¼Ãû³ÆÊäÈë¿ò
+	 * ç”¨æˆ·ç™»å½•åç§°è¾“å…¥æ¡†
 	 */
 	@InjectView(R.id.login_et_loging_name) EditText et_login_name;
 	/**
-	 * ÓÃ»§ÃÜÂëÊäÈë¿ò
+	 * ç”¨æˆ·å¯†ç è¾“å…¥æ¡†
 	 */
 	@InjectView(R.id.login_et_loging_pwd) EditText et_login_pwd;
 	/**
-	 * µÇÂ¼°´Å¥
+	 * ç™»å½•æŒ‰é’®
 	 */
 	@InjectView(R.id.login_bt_submit) Button bt_login_submit;
 	/**
-	 * ÖØÖÃ°´Å¥
+	 * é‡ç½®æŒ‰é’®
 	 */
 	@InjectView(R.id.login_bt_reset) Button bt_login_reset;
 	/**
-	 * µÇÂ¼µÄÒµÎñÂß¼­Àà
+	 * ç™»å½•çš„ä¸šåŠ¡é€»è¾‘ç±»
 	 */
 	private LoginEngine loginEngine;
 	/**
-	 * µÇÂ¼×ÓÏß³Ì
+	 * ç™»å½•å­çº¿ç¨‹
 	 */
 	private LoginAsyncTask loginAsyncTask;
 	/**
-	 * µã»÷¼àÌıÀà
+	 * ç‚¹å‡»ç›‘å¬ç±»
 	 */
 	private OnLoginPageClickListener onLoginPageClickListener = new OnLoginPageClickListener();
 	/**
-	 * µ¯³ö¿ò¹¤¾ß
+	 * å¼¹å‡ºæ¡†å·¥å…·
 	 */
 	private DialogTool dialogTool;
 	/**
-	 * µÈ´ı¿ò
+	 * ç­‰å¾…æ¡†
 	 */
 	private WaittingAlertDialog waittingAlertDialog;
 
@@ -87,7 +87,7 @@ public class LoginActivity extends BaseActivity{
 		
 	}
 	/**
-	 * Ò³Ãæµã»÷²Ù×÷Àà
+	 * é¡µé¢ç‚¹å‡»æ“ä½œç±»
 	 * @author zhangshuai
 	 *
 	 */
@@ -97,7 +97,7 @@ public class LoginActivity extends BaseActivity{
 		public void onClick(View v) {
 			switch(v.getId()){
 			case R.id.login_bt_submit:
-				//µÇÂ¼Ïß³Ì
+				//ç™»å½•çº¿ç¨‹
 				loginAsyncTask = new LoginAsyncTask();
 				loginAsyncTask.execute("");
 				break;
@@ -109,7 +109,7 @@ public class LoginActivity extends BaseActivity{
 		}
 	}
 	/**
-	 * µÇÂ¼×ÓÏß³Ì
+	 * ç™»å½•å­çº¿ç¨‹
 	 */
 	private class LoginAsyncTask extends AsyncTask<String, String, CommonResult>{
 		@Override
@@ -122,22 +122,22 @@ public class LoginActivity extends BaseActivity{
 			super.onPostExecute(result);
 			waittingAlertDialog.dismiss();
 			waittingAlertDialog = null;
-			//ÅĞ¶ÏµÇÂ¼ÊÇ·ñ³É¹¦
+			//åˆ¤æ–­ç™»å½•æ˜¯å¦æˆåŠŸ
 			if(result.isSuccess()){
-				//³É¹¦£¬Ìø×ª½çÃæ
+				//æˆåŠŸï¼Œè·³è½¬ç•Œé¢
 				Intent intent = new Intent(LoginActivity.this, com.zs198893.netstar_oa.Main.activity.MainActivity.class);
 				startActivity(intent);
 				finish();
 			}else{
-				//Ê§°Ü£¬ÏÔÊ¾Ô­Òò
+				//å¤±è´¥ï¼Œæ˜¾ç¤ºåŸå› 
 				Toast.makeText(LoginActivity.this, (String)result.getResult(), Toast.LENGTH_SHORT).show();
 			}
 		}
 
 		@Override
 		protected void onPreExecute() {
-			//¿ªÆôµÈ´ı½çÃæ
-			waittingAlertDialog = dialogTool.getWaittingDialog(-1, "µÇÂ½ÖĞ£¬ÇëÉÔºò¡£¡£¡£");
+			//å¼€å¯ç­‰å¾…ç•Œé¢
+			waittingAlertDialog = dialogTool.getWaittingDialog(-1, "ç™»é™†ä¸­ï¼Œè¯·ç¨å€™ã€‚ã€‚ã€‚");
 			waittingAlertDialog.show();
 			super.onPreExecute();
 		}

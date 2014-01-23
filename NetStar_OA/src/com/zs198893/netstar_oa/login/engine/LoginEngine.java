@@ -1,84 +1,113 @@
 package com.zs198893.netstar_oa.login.engine;
 
-import java.io.IOException;
-import java.net.URI;
+import static android.text.TextUtils.isEmpty;
 
-import org.springframework.http.HttpMethod;
-import org.springframework.http.client.ClientHttpRequest;
-import org.springframework.http.client.ClientHttpRequestFactory;
+import java.net.HttpURLConnection;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.http.Header;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 
-import com.zs198893.netstar_oa.AppContext;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 import com.zs198893.netstar_oa.config.WebServerConfig;
 import com.zs198893.netstar_oa.model.CommonResult;
+import com.zs198893.netstar_oa.tools.HttpUtility;
 import com.zs198893.netstar_oa.tools.NetworkTool;
 
 /**
- * µÇÂ¼ÒµÎñÂß¼­Àà
+ * ç™»å½•ä¸šåŠ¡é€»è¾‘ç±»
  * @author zhangshuai
  *
  */
 public class LoginEngine {
 	/**
-	 * ÉÏÏÂÎÄ
+	 * ä¸Šä¸‹æ–‡
 	 */
 	private Context context;
 	/**
-	 * Í¨ÓÃ·µ»ØÖµ¶ÔÏó
+	 * é€šç”¨è¿”å›å€¼å¯¹è±¡
 	 */
 	private CommonResult commonResult;
 	/**
-	 * spring rest ÇëÇóÄ£°æ
+	 * spring rest è¯·æ±‚æ¨¡ç‰ˆ
 	 */
 	RestTemplate restTemplate;
+	HttpURLConnection httpConn;
+	HttpUtility httpUtility;
 	
 	public LoginEngine(Context context) {
 		super();
 		this.context = context;
+		httpUtility = HttpUtility.getInstance(context);
 	}
 
 	/**
-	 * ÑéÖ¤µÇÂ¼
-	 * @param acount ÓÃ»§ÕÊºÅ
-	 * @param pwd ÓÃ»§ÃÜÂë
-	 * @return Í¨ÓÃ·µ»ØÖµ¶ÔÏó
+	 * éªŒè¯ç™»å½•
+	 * @param acount ç”¨æˆ·å¸å·
+	 * @param pwd ç”¨æˆ·å¯†ç 
+	 * @return é€šç”¨è¿”å›å€¼å¯¹è±¡
 	 */
 	public CommonResult authentication(String acount, String pwd){
 		commonResult = new CommonResult();
 		commonResult.setSuccess(false);
-		restTemplate = new RestTemplate();
-		restTemplate.set
-		((SimpleClientHttpRequestFactory)(restTemplate.getRequestFactory())).setConnectTimeout(WebServerConfig.timeout);
-		restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
 		do{
-			//¼ì²éÍøÂç
+			//æ£€æŸ¥ç½‘ç»œ
 			if(!NetworkTool.isAvailable(context)){
-				commonResult.setResult("ÍøÂç²»¿ÉÓÃ");
+				commonResult.setResult("ç½‘ç»œä¸å¯ç”¨");
 				break;
 			}
-			//ÅĞ¶ÏÓÃ»§ÃûÕÊºÅ
-			if(TextUtils.isEmpty(acount) || TextUtils.isEmpty(pwd)){
-				commonResult.setResult("ÓÃ»§ÃûÃÜÂë²»µÃÎª¿Õ");
+			//åˆ¤æ–­ç”¨æˆ·åå¸å·
+			if(isEmpty(acount) || TextUtils.isEmpty(pwd)){
+				commonResult.setResult("ç”¨æˆ·åå¯†ç ä¸å¾—ä¸ºç©º");
 				break;
 			}
+			Map<String,String> param = new HashMap<String, String>();
+			param.put("username", acount);
+			param.put("password", pwd);
+			RequestParams params = new RequestParams();
+			params.put("username", acount);
+			params.put("password", pwd);
 			try{
-				commonResult.setResult(restTemplate.getForObject(WebServerConfig.loginActionURL, String.class));
+				AsyncHttpClient client = new AsyncHttpClient();
+				client.post(WebServerConfig.loginActionURL, params,new AsyncHttpResponseHandler() {
+					
+				    @Override
+					public void onFailure(int statusCode, Header[] headers,
+							Throwable error, String content) {
+						// TODO Auto-generated method stub
+				    	Log.i("shuai", statusCode+"");
+					}
+
+					@Override
+					public void onSuccess(int statusCode, String content) {
+						// TODO Auto-generated method stub
+						Log.i("shuai", statusCode+"");
+					}
+
+					@Override
+				    public void onSuccess(String response) {
+				        System.out.println(response);
+				    }
+				});
 			}catch(Exception e){
 				e.printStackTrace();
 				commonResult.setSuccess(false);
 				try{
-					commonResult.setResult("³öÏÖÁË´íÎó£º"+e.getCause().getLocalizedMessage());
+					commonResult.setResult("å‡ºç°äº†é”™è¯¯ï¼š"+e.getCause().getLocalizedMessage());
 				}catch(Exception e0){
-					commonResult.setResult("Î´Öª´íÎó");
+					commonResult.setResult("æœªçŸ¥é”™è¯¯");
 				}
 			}
-			commonResult.setSuccess(true);
-			commonResult.setResult("µÇÂ¼³É¹¦");
 			return commonResult;
 		}while(false);
 		return commonResult;

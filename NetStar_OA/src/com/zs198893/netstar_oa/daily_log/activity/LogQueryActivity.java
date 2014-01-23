@@ -12,7 +12,7 @@ public class LogQueryActivity extends BaseActivity {
 
 	@Override
 	public void subInitParam() {
-        actionBar.setTitle("ÈÕÖ¾²éÑ¯");
+        actionBar.setTitle("æ—¥å¿—æŸ¥è¯¢");
 	}
 
 	@Override

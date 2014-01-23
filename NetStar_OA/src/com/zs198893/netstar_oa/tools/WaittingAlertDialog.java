@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.zs198893.netstar_oa.R;
 
 /**
- * µÈ´ıdialog
+ * ç­‰å¾…dialog
  * 
  * @author zhangshuai
  * 
@@ -18,23 +18,23 @@ import com.zs198893.netstar_oa.R;
 public class WaittingAlertDialog extends Dialog {
 	private Context context;
 	/**
-	 * ²¼¾ÖÎÄ¼ş
+	 * å¸ƒå±€æ–‡ä»¶
 	 */
 	public int resLayout;
 	/**
-	 * ÌáÊ¾ÎÄ×Ö
+	 * æç¤ºæ–‡å­—
 	 */
 	public TextView messageView;
 	/**
-	 * Ğı×ªµÄÍ¼Æ¬
+	 * æ—‹è½¬çš„å›¾ç‰‡
 	 */
 	public ImageView common_dialog_wait_iv;
 	/**
-	 * ÎÄ×ÖÏûÏ¢
+	 * æ–‡å­—æ¶ˆæ¯
 	 */
 	private String message;
 	/**
-	 * ×Ô¶¨Òå²¼¾ÖµÄ¹¹Ôì·½·¨
+	 * è‡ªå®šä¹‰å¸ƒå±€çš„æ„é€ æ–¹æ³•
 	 * 
 	 * @param context
 	 * @param resLayout

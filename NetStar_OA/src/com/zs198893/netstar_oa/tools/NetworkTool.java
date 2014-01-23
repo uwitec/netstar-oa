@@ -1,12 +1,21 @@
 package com.zs198893.netstar_oa.tools;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
+import java.net.URLConnection;
+
+import org.apache.http.protocol.HTTP;
+
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 
 /**
- * ÍøÂç¹¤¾ßÀà
+ * ç½‘ç»œå·¥å…·ç±»
  * 
  * @author zhangshuai
  * 
@@ -14,29 +23,29 @@ import android.net.wifi.WifiManager;
 public class NetworkTool {
 
 	/**
-	 * ·µ»ØÍøÂçÊÇ·ñ¿ÉÓÃ¡£ĞèÒªÈ¨ÏŞ£º
+	 * è¿”å›ç½‘ç»œæ˜¯å¦å¯ç”¨ã€‚éœ€è¦æƒé™ï¼š
 	 * <p>
 	 * <b> < uses-permission
 	 * android:name="android.permission.ACCESS_NETWORK_STATE" /> </b>
 	 * </p>
 	 * 
 	 * @param context
-	 *            ÉÏÏÂÎÄ
-	 * @return ÍøÂç¿ÉÓÃÔò·µ»Øtrue£¬·ñÔò·µ»Øfalse
+	 *            ä¸Šä¸‹æ–‡
+	 * @return ç½‘ç»œå¯ç”¨åˆ™è¿”å›trueï¼Œå¦åˆ™è¿”å›false
 	 */
 	public static boolean isAvailable(Context context) {
-		ConnectivityManager cm = (ConnectivityManager) context
+		ConnectivityManager connMgr = (ConnectivityManager) context
 				.getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo info = cm.getActiveNetworkInfo();
-		return info != null && info.isAvailable();
+		NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+		return (networkInfo != null && networkInfo.isConnected());
 	}
 
 	/**
-	 * ·µ»ØWifiÊÇ·ñÆôÓÃ
+	 * è¿”å›Wifiæ˜¯å¦å¯ç”¨
 	 * 
 	 * @param context
-	 *            ÉÏÏÂÎÄ
-	 * @return WifiÍøÂç¿ÉÓÃÔò·µ»Øtrue£¬·ñÔò·µ»Øfalse
+	 *            ä¸Šä¸‹æ–‡
+	 * @return Wifiç½‘ç»œå¯ç”¨åˆ™è¿”å›trueï¼Œå¦åˆ™è¿”å›false
 	 */
 	public static boolean isWIFIActivate(Context context) {
 		return ((WifiManager) context.getSystemService(Context.WIFI_SERVICE))
@@ -44,15 +53,29 @@ public class NetworkTool {
 	}
 
 	/**
-	 * ĞŞ¸ÄWifi×´Ì¬
+	 * ä¿®æ”¹WifiçŠ¶æ€
 	 * 
 	 * @param context
-	 *            ÉÏÏÂÎÄ
+	 *            ä¸Šä¸‹æ–‡
 	 * @param status
-	 *            trueÎª¿ªÆôWifi£¬falseÎª¹Ø±ÕWifi
+	 *            trueä¸ºå¼€å¯Wifiï¼Œfalseä¸ºå…³é—­Wifi
 	 */
 	public static void changeWIFIStatus(Context context, boolean status) {
 		((WifiManager) context.getSystemService(Context.WIFI_SERVICE))
 				.setWifiEnabled(status);
+	}
+	/**
+	 * è·å–ç½‘ç»œè¿æ¥å¯¹è±¡
+	 * @return
+	 * @throws IOException 
+	 */
+	public static HttpURLConnection  getHttpURLConnection(String urlString) throws IOException{
+		URL url = new URL(urlString);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setReadTimeout(10000 /* milliseconds */);
+        conn.setConnectTimeout(15000 /* milliseconds */);
+        conn.setRequestMethod("GET");
+        conn.setDoInput(true);
+		return null;
 	}
 }

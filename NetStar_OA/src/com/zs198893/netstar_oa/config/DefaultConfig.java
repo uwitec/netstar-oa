@@ -1,9 +1,12 @@
 package com.zs198893.netstar_oa.config;
 /**
- * Ä¬ÈÏµÄ·şÎñÆ÷µØÖ·
- * @author zhangshuai
+ * åŸºæœ¬é…ç½®
+ * @author Administrator
  *
  */
 public class DefaultConfig {
-
+	/**
+	 * sharedprefernce é…ç½®æ–‡ä»¶çš„åç§°
+	 */
+	public static String DefaultConfigFileName = "DefaultConfigFile";
 }

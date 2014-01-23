@@ -8,7 +8,7 @@ import com.markupartist.android.widget.ActionBar;
 import com.markupartist.android.widget.ActionBar.IntentAction;
 
 /**
- * activity»ùÀà
+ * activityåŸºç±»
  * 
  * @author zhangshuai
  * 
@@ -28,7 +28,7 @@ public abstract class BaseActivity extends RoboActivity implements
 		subInitParam();
 		subSetOnclick();
 		subRunSomeThing();
-		// Ìí¼ÓActivityµ½¶ÑÕ»
+		// æ·»åŠ Activityåˆ°å †æ ˆ
 		AppManager.getAppManager().addActivity(this);
 	}
 
@@ -36,7 +36,7 @@ public abstract class BaseActivity extends RoboActivity implements
 	protected void onDestroy() {
 		super.onDestroy();
 
-		// ½áÊøActivity&´Ó¶ÑÕ»ÖĞÒÆ³ı
+		// ç»“æŸActivity&ä»å †æ ˆä¸­ç§»é™¤
 		AppManager.getAppManager().finishActivity(this);
 	}
 
