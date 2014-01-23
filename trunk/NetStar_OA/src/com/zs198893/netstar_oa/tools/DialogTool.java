@@ -8,7 +8,7 @@ import com.zs198893.netstar_oa.R;
 public class DialogTool {
 	private Context context;
 	/**
-	 * µÈ´ıÀàĞÍ
+	 * ç­‰å¾…ç±»å‹
 	 */
 	public final static int TYPE_WaittingAlertDialog = 0x0;
 
@@ -17,7 +17,7 @@ public class DialogTool {
 		this.context = context;
 	}
 	/**
-	 * »ñµÃÍ¨ÓÃµÈ´ı¿ñ
+	 * è·å¾—é€šç”¨ç­‰å¾…ç‹‚
 	 * @param layoutResource
 	 * @param message
 	 * @return
@@ -28,12 +28,12 @@ public class DialogTool {
 			layoutResource = R.layout.common_dialog_wait_layout;
 		}
 		if(TextUtils.isEmpty(message)){
-			message = "²Ù×÷ÖĞ¡£¡£¡£";
+			message = "æ“ä½œä¸­ã€‚ã€‚ã€‚";
 		}
 		waittingAlertDialog =  new WaittingAlertDialog(context, layoutResource, message);
-		//È¡Ïû±³¾°
+		//å–æ¶ˆèƒŒæ™¯
 		waittingAlertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-		// ÉèÖÃµã»÷ÆÁÄ»Dialog²»ÏûÊ§
+		// è®¾ç½®ç‚¹å‡»å±å¹•Dialogä¸æ¶ˆå¤±
 		waittingAlertDialog.setCancelable(false);
 		return waittingAlertDialog;
 	}

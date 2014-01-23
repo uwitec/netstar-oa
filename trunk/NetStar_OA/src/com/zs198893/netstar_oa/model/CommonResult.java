@@ -1,16 +1,16 @@
 package com.zs198893.netstar_oa.model;
 /**
- * Í¨ÓÃ½á¹û·µ»ØÀà
+ * é€šç”¨ç»“æœè¿”å›ç±»
  * @author zhangshuai
  *
  */
 public class CommonResult {
 	/**
-	 * ÊÇ·ñ³É¹¦
+	 * æ˜¯å¦æˆåŠŸ
 	 */
 	private boolean isSuccess;
 	/**
-	 * ¾ßÌåµÄĞÅÏ¢£¬ÓĞ¿ÉÄÜÊÇstring »òÕß±ğµÄ
+	 * å…·ä½“çš„ä¿¡æ¯ï¼Œæœ‰å¯èƒ½æ˜¯string æˆ–è€…åˆ«çš„
 	 */
 	private Object result;
 	

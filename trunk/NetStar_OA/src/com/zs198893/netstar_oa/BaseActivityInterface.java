@@ -6,22 +6,22 @@ package com.zs198893.netstar_oa;
  */
 public interface BaseActivityInterface {
 	/**
-	 * ³õÊ¼»¯view
+	 * åˆå§‹åŒ–view
 	 */
 	public void subInitView();
 
 	/**
-	 * ³õÊ¼»¯²ÎÊı
+	 * åˆå§‹åŒ–å‚æ•°
 	 */
 	public void subInitParam();
 
 	/**
-	 * ³õÊ¼»¯ onClick
+	 * åˆå§‹åŒ– onClick
 	 */
 	public void subSetOnclick();
 
 	/**
-	 * ×öÒ»Ğ©¶¯×÷
+	 * åšä¸€äº›åŠ¨ä½œ
 	 */
 	public void subRunSomeThing();
 }

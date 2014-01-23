@@ -16,9 +16,9 @@ import com.zs198893.netstar_oa.daily_log.activity.LogInputActivity;
 import com.zs198893.netstar_oa.daily_log.activity.LogQueryActivity;
 
 public class MainActivity extends BaseActivity {
-	private String[] fName = new String[]{"ÏúÊÛ¹ÜÀí","ÈÎÎñ¹ÜÀí","×ÛºÏ¹ÜÀí","ÈÕÖ¾Â¼Èë","ÈÕÖ¾²éÑ¯"};
+	private String[] fName = new String[]{"é”€å”®ç®¡ç†","ä»»åŠ¡ç®¡ç†","ç»¼åˆç®¡ç†","æ—¥å¿—å½•å…¥","æ—¥å¿—æŸ¥è¯¢"};
 	/**
-	 * ¹¦ÄÜ±í¸ñ²¼¾Ö
+	 * åŠŸèƒ½è¡¨æ ¼å¸ƒå±€
 	 */
 	@InjectView(R.id.main_activity_gv) GridView main_activity_gv;
 
@@ -31,7 +31,7 @@ public class MainActivity extends BaseActivity {
 	@Override
 	public void subInitParam() {
 		main_activity_gv.setAdapter(new ArrayAdapter<String>(MainActivity.this, R.layout.main_grid_item, R.id.main_activity_tv_function_name, fName));
-        actionBar.setTitle("Ö÷Ò³Ãæ");
+        actionBar.setTitle("ä¸»é¡µé¢");
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class MainActivity extends BaseActivity {
 				}else if(arg2==4){
 					intent.setClass(MainActivity.this, LogQueryActivity.class);
 				}else{
-					Toast.makeText(MainActivity.this, "¹¦ÄÜÉĞÎ´¿ª·¢", Toast.LENGTH_SHORT).show();
+					Toast.makeText(MainActivity.this, "åŠŸèƒ½å°šæœªå¼€å‘", Toast.LENGTH_SHORT).show();
 					return ;
 				}
 				startActivity(intent);

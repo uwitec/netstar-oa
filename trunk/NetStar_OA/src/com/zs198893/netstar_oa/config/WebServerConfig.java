@@ -1,51 +1,55 @@
 package com.zs198893.netstar_oa.config;
 /**
- * ·şÎñÆ÷Ïà¹Ø·şÎñÅäÖÃ
+ * æœåŠ¡å™¨ç›¸å…³æœåŠ¡é…ç½®
  * @author zhangshuai
  *
  */
 public class WebServerConfig {
 	/**
-	 * ³¬Ê±Ê±¼ä
+	 * è¶…æ—¶æ—¶é—´
 	 */
 	public static int timeout = 10*1000;
 	/**
-	 * ·şÎñÆ÷ Í·£¬²»¼ÓÃÜ
+	 * åœ¨ sharedpreference ä¸­ cookie
+	 */
+	public static String cookieName = "Set-Cookie";
+	/**
+	 * æœåŠ¡å™¨ å¤´ï¼Œä¸åŠ å¯†
 	 */
 	private static String serverHttp= "http://";
 	/**
-	 * ·şÎñÆ÷ Í·£¬¼ÓÃÜ
+	 * æœåŠ¡å™¨ å¤´ï¼ŒåŠ å¯†
 	 */
 	private static String serverHttps= "https://";
 	/**
-	 * ·şÎñÆ÷ip
+	 * æœåŠ¡å™¨ip
 	 */
 	private static String serverIp= "115.28.22.128";
 	/**
-	 * ·şÎñÆ÷ ¶Ë¿Ú
+	 * æœåŠ¡å™¨ ç«¯å£
 	 */
-	private static String serverPort= "80";
+	private static String serverPort= "8080";
 	/**
-	 * ÏîÄ¿Ãû³Æ
+	 * é¡¹ç›®åç§°
 	 */
 	private static String serverName = "OA";
 	/**
-	 * ·şÎñÆ÷µØÖ·
+	 * æœåŠ¡å™¨åœ°å€
 	 */
 	private static String serverHttpUrl = serverHttp + serverIp + ":" + serverPort + "/" + serverName + "/";
 	/**
-	 * µÇÂ¼µÄ½Ó¿Ú
+	 * ç™»å½•çš„æ¥å£
 	 */
 	private static String loginAction = "LoginValidation";
 	
 	/**
-	 * µÇÂ¼µÄ½Ó¿ÚµØÖ·
+	 * ç™»å½•çš„æ¥å£åœ°å€
 	 */
 	public static String loginActionURL = serverHttpUrl + loginAction + "/";
 	
 	/**
-	 * ³õÊ¼»¯ OAÏîÄ¿µØÖ·
-	 * @param isHttp true Îª http£¬ false Îª https
+	 * åˆå§‹åŒ– OAé¡¹ç›®åœ°å€
+	 * @param isHttp true ä¸º httpï¼Œ false ä¸º https
 	 */
 	public static void initOAHttpUrl(boolean isHttp){
 		serverHttpUrl = isHttp?serverHttp + serverIp + ":" + serverPort + "/" + serverName + "/":serverHttps + serverIp + ":" + serverPort + "/" + serverName + "/";

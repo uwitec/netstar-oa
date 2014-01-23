@@ -12,7 +12,7 @@ import com.zs198893.netstar_oa.config.WebServerConfig;
 import com.zs198893.netstar_oa.login.activity.LoginActivity;
 
 /**
- * Ó¦ÓÃ¿ªÆô ½øÈë½çÃæ
+ * åº”ç”¨å¼€å¯ è¿›å…¥ç•Œé¢
  * 
  * @author zhangshuai
  * 
@@ -34,7 +34,7 @@ public class AppStart extends Activity implements BaseActivityInterface {
 
 	@Override
 	public void subInitParam() {
-		//³õÊ¼»¯ÅäÖÃ
+		//åˆå§‹åŒ–é…ç½®
 		WebServerConfig.initOAHttpUrl(true);
 	}
 
@@ -48,7 +48,7 @@ public class AppStart extends Activity implements BaseActivityInterface {
 	public void subRunSomeThing() {
 		final View view = View.inflate(this, R.layout.start, null);
 		setContentView(view);
-		// ½¥±äÕ¹Ê¾Æô¶¯ÆÁ
+		// æ¸å˜å±•ç¤ºå¯åŠ¨å±
 		AlphaAnimation aa = new AlphaAnimation(0.0f, 1.0f);
 		aa.setDuration(2000);
 		view.startAnimation(aa);
@@ -70,7 +70,7 @@ public class AppStart extends Activity implements BaseActivityInterface {
 	}
 
 	/**
-	 * Ìø×ªµ½...
+	 * è·³è½¬åˆ°...
 	 */
 	private void redirectTo() {
 		Intent intent = new Intent(this, LoginActivity.class);
