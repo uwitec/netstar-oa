@@ -40,13 +40,18 @@ public class WebServerConfig {
 	/**
 	 * 登录的接口
 	 */
-	private static String loginAction = "LoginValidation";
+	public static String loginAction = "LoginValidation";
+	/**
+	 * 查询日志列表接口
+	 */
+	public static String dailyLogQueryListAction = "LogQuery/advancedquery.json";
 	
 	/**
-	 * 登录的接口地址
+	 * 获得地址
 	 */
-	public static String loginActionURL = serverHttpUrl + loginAction + "/";
-	
+	public static String getUrl(String action){
+		return serverHttpUrl + action;
+	}
 	/**
 	 * 初始化 OA项目地址
 	 * @param isHttp true 为 http， false 为 https
