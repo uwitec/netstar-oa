@@ -50,7 +50,7 @@ public class AppStart extends Activity implements BaseActivityInterface {
 		setContentView(view);
 		// 渐变展示启动屏
 		AlphaAnimation aa = new AlphaAnimation(0.0f, 1.0f);
-		aa.setDuration(2000);
+		aa.setDuration(500);
 		view.startAnimation(aa);
 		aa.setAnimationListener(new AnimationListener() {
 			@Override

@@ -7,9 +7,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.http.Header;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.client.SimpleClientHttpRequestFactory;
-import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
 import android.content.Context;
@@ -79,25 +76,30 @@ public class LoginEngine {
 			params.put("password", pwd);
 			try{
 				AsyncHttpClient client = new AsyncHttpClient();
-				client.post(WebServerConfig.loginActionURL, params,new AsyncHttpResponseHandler() {
-					
+				client.post("dsfsd"+WebServerConfig.getUrl(WebServerConfig.dailyLogQueryListAction), params,new AsyncHttpResponseHandler() {
+					int statusCode = 0;
+					@Override
+					public void onFinish() {
+						Log.i("shuai", "onFinish  " + statusCode);
+						super.onFinish();
+					}
+
+					@Override
+					public void onStart() {
+						Log.i("shuai", "onStart  " + statusCode);
+						super.onStart();
+					}
 				    @Override
 					public void onFailure(int statusCode, Header[] headers,
 							Throwable error, String content) {
 						// TODO Auto-generated method stub
-				    	Log.i("shuai", statusCode+"");
+				    	Log.i("shuai", "onFailure  "+statusCode);
 					}
-
 					@Override
 					public void onSuccess(int statusCode, String content) {
 						// TODO Auto-generated method stub
-						Log.i("shuai", statusCode+"");
+						Log.i("shuai", "onSuccess  "+statusCode);
 					}
-
-					@Override
-				    public void onSuccess(String response) {
-				        System.out.println(response);
-				    }
 				});
 			}catch(Exception e){
 				e.printStackTrace();
@@ -112,7 +114,7 @@ public class LoginEngine {
 		}while(false);
 		return commonResult;
 	}
-	private class Mofgsd extends  StringHttpMessageConverter {
+	private class Mofgsd extends  AsyncHttpResponseHandler {
 
 
 		
