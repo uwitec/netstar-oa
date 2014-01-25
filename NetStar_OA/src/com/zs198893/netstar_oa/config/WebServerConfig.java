@@ -42,9 +42,21 @@ public class WebServerConfig {
 	 */
 	public static String loginAction = "LoginValidation";
 	/**
-	 * 查询日志列表接口
+	 * 查询日志列表接口 LogQuery/search_Content.json
 	 */
 	public static String dailyLogQueryListAction = "LogQuery/advancedquery.json";
+	/**
+	 * 查询日志详细 
+	 */
+	public static String dailyLogQueryContentAction = "LogQuery/search_Content.json";
+	/**
+	 * 编辑的时候产看日志详细
+	 */
+	public static String dailyLogEditQueryContentAction = "LogInput/selectDay.json";
+	/**
+	 * 编辑 提交日志
+	 */
+	public static String dailyLogEditContentAction = "LogInput/editlog.json";
 	
 	/**
 	 * 获得地址
