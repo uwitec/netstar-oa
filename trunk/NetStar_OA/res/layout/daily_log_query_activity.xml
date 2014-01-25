@@ -30,7 +30,7 @@
                 <EditText
                     android:id="@+id/daily_log_query_et_type_department"
                     style="@style/daily_log_query_value"
-                    android:text="开发部" />
+                    android:text="" />
             </LinearLayout>
         </LinearLayout>
         <!-- 创建人 -->
@@ -48,7 +48,7 @@
                 <EditText
                     android:id="@+id/daily_log_query_et_type_owner"
                     style="@style/daily_log_query_value"
-                    android:text="张帅" />
+                    android:text="" />
             </LinearLayout>
         </LinearLayout>
         <!-- 日期 -->
@@ -67,13 +67,13 @@
                     android:id="@+id/daily_log_query_et_type_date1"
                     style="@style/daily_log_query_value"
                     android:focusable="false"
-                    android:text="2013-01-01" />
+                    android:text="" />
 
                 <EditText
                     android:id="@+id/daily_log_query_et_type_date2"
                     style="@style/daily_log_query_value"
                     android:focusable="false"
-                    android:text="2013-01-01" />
+                    android:text="" />
             </LinearLayout>
         </LinearLayout>
 
@@ -90,22 +90,22 @@
                 android:text="查询" />
 
             <Button
-                android:id="@+id/daily_log_query_bt_nextpage"
+                android:id="@+id/daily_log_query_bt_lastpage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="上页" />
 
             <TextView
-                android:id="@+id/daily_log_query_page_info"
+                android:id="@+id/daily_log_query_tv_page_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="1/19 页"
+                android:text="0/0 页"
                 android:textColor="#FF000000" />
 
             <Button
-                android:id="@+id/daily_log_query_bt_lastpage"
+                android:id="@+id/daily_log_query_bt_nextpage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -142,13 +142,10 @@
             android:background="#FFFFFFFF" >
         </ListView>
 </HorizontalScrollView>
-        <TextView
-            android:id="@+id/daily_log_query_tv_conent"
+        <WebView
+            android:id="@+id/daily_log_query_wb_conent"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
-            android:background="#FFEEEEEE"
-            android:text="这就是日志这就是日志这就是日志这就是日志这就是日志这就是日志这就是日志" />
+            android:layout_height="match_parent"/>
     </LinearLayout>
 
 </LinearLayout>
