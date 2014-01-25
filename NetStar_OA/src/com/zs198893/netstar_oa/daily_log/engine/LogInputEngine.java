@@ -113,6 +113,7 @@ public class LogInputEngine {
 			params.add("create_Date", f.format(c.getTime()));
 		}else{
 			params.add("update_Date", f.format(c.getTime()));
+			params.add("id", logInputActivity.dailyLogModel.getId()+"");
 		}
 		((AppContext) logInputActivity.getApplicationContext()).asyncHttpClient
 		.post(WebServerConfig
