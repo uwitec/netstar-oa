@@ -20,7 +20,8 @@ public class MainActivity extends BaseActivity {
 	/**
 	 * 功能表格布局
 	 */
-	@InjectView(R.id.main_activity_gv) GridView main_activity_gv;
+	//@InjectView(R.id.main_activity_gv) 
+	GridView main_activity_gv;
 
 	@Override
 	public void subInitView() {
@@ -31,7 +32,6 @@ public class MainActivity extends BaseActivity {
 	@Override
 	public void subInitParam() {
 		main_activity_gv.setAdapter(new ArrayAdapter<String>(MainActivity.this, R.layout.main_grid_item, R.id.main_activity_tv_function_name, fName));
-        actionBar.setTitle("主页面");
 	}
 
 	@Override

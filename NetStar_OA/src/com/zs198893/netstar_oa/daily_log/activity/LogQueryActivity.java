@@ -112,7 +112,6 @@ public class LogQueryActivity extends BaseActivity {
 	public void subInitParam() {
 		daily_log_query_wb_conent.getSettings().setDefaultTextEncodingName("UTF -8") ;
 		currentSelectPosition = -1;
-		actionBar.setTitle("日志查询");
 		logQueryEngine = new LogQueryEngine(this);
 		// 初始化查询参数
 		logQueryEngine.initQueryParam();

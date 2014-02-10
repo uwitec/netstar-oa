@@ -56,7 +56,6 @@ public class LogInputActivity extends BaseActivity {
 		dialogTool = new DialogTool(this);
 		// 初始化等待界面
 		waittingAlertDialog = dialogTool.getWaittingDialog(-1, "获取数据中，请稍候。。。");
-		actionBar.setTitle("日志录入");
 		logInputEngine = new LogInputEngine(this);
 		daily_log_input_sp_date.setAdapter(new ArrayAdapter<String>(LogInputActivity.this, R.layout.daily_log_input_activity_datetype_item, R.id.daily_log_input_activity_tv_type, DefaultConfig.DailyLogDateType));
 	}
