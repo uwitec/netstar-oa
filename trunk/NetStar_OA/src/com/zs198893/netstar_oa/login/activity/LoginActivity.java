@@ -35,7 +35,7 @@ public class LoginActivity extends BaseActivity {
 	/**
 	 * 配置按钮
 	 */
-	@InjectView(R.id.login_bt_config)
+	//@InjectView(R.id.login_bt_config)
 	Button bt_login_config;
 	/**
 	 * 用户登录名称输入框
@@ -55,7 +55,7 @@ public class LoginActivity extends BaseActivity {
 	/**
 	 * 重置按钮
 	 */
-	@InjectView(R.id.login_bt_reset)
+	//@InjectView(R.id.login_bt_reset)
 	Button bt_login_reset;
 	/**
 	 * 登录的业务逻辑类
@@ -113,7 +113,7 @@ public class LoginActivity extends BaseActivity {
 				login(et_login_name.getText().toString().trim(), et_login_pwd
 						.getText().toString().trim());
 				break;
-			case R.id.login_bt_reset:
+			case 1:
 				et_login_name.setText("");
 				et_login_pwd.setText("");
 				break;

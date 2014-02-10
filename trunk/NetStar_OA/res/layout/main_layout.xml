@@ -5,61 +5,32 @@
     android:background="#FFFFFFFF"
     android:orientation="vertical" >
 
-    <com.markupartist.android.widget.ActionBar
-        xmlns:app="http://schemas.android.com/apk/lib/com.zs198893.netstar_oa"
-        android:id="@+id/actionbar"
-        style="@style/ActionBar"
-        app:title="@string/some_title" />
-
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="35dp" >
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_title"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="网星协同办公系统"
+        android:textColor="@android:color/white"
+        android:textSize="24sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+    <TabHost
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" 
-            android:visibility="gone">
+            android:layout_gravity="bottom" >
+        </TabWidget>
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/ic_launcher" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="张帅"
-                    android:textColor="#FF000000" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="所属三组"
-                    android:textColor="#FF000000" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <GridView
-            android:id="@+id/main_activity_gv"
+        <FrameLayout
+            android:id="@android:id/tabcontent"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:horizontalSpacing="5dp"
-            android:numColumns="2"
-            android:scrollbars="none"
-            android:verticalSpacing="5dp" >
-        </GridView>
-    </LinearLayout>
+            android:layout_height="match_parent" >
+        </FrameLayout>
+    </TabHost>
 
 </LinearLayout>
