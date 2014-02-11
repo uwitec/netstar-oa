@@ -1,51 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFFFF"
     android:orientation="vertical" >
+    <!-- start title -->
+    <include layout="@layout/main_layout_title"/>
+    <!-- end title -->
+	<!-- start 内容 -->
+    <RelativeLayout
+       style="@style/main_layout_content">
+       
+    </RelativeLayout>
+    <!-- end 内容 -->
+    <!-- start 底部导航栏 -->
+    <include layout="@layout/main_layout_bottom"/>
+    <!-- end 底部导航栏 -->
 
-    <TextView
-        style="@style/textview_title_style"
-        android:text="网星协同办公系统" />
-
-    <TabHost
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-
-        <FrameLayout
-            android:id="@android:id/tabcontent"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-        </FrameLayout>
-
-        <TabWidget
-            android:id="@android:id/tabs"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom" >
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:id="@+id/main_layout_activity_tv_tabbutton_1"
-                    style="@style/main_layout_activity_tabhost_tv"
-                    android:text="导航" />
-
-                <TextView
-                    android:id="@+id/main_layout_activity_tv_tabbutton_2"
-                    style="@style/main_layout_activity_tabhost_tv"
-                    android:text="公司动态" />
-
-                <TextView
-                    android:id="@+id/main_layout_activity_tv_tabbutton_3"
-                    style="@style/main_layout_activity_tabhost_tv"
-                    android:text="工作量统计" />
-            </LinearLayout>
-        </TabWidget>
-    </TabHost>
-
-</LinearLayout>
+</RelativeLayout>
