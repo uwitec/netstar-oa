@@ -76,13 +76,20 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:padding">5dp</item>
         <item name="android:background">@drawable/bg_main_layout_tab_button_unclicked</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">@dimen/textsize_1</item>
     </style>
     <!-- end 主功能页面，tab的按钮 @author：张帅 -->
+    <!-- start 功能主界面的主体 -->
+    <style name="main_layout_content">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_above">@+id/main_bottom</item>
+        <item name="android:layout_below">@+id/main_title</item>
+    </style>
+    <!-- end 功能主界面的主体 -->
 
 
     <!-- 查询条件最外边框 -->
