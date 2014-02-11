@@ -64,18 +64,5 @@ public class NetworkTool {
 		((WifiManager) context.getSystemService(Context.WIFI_SERVICE))
 				.setWifiEnabled(status);
 	}
-	/**
-	 * 获取网络连接对象
-	 * @return
-	 * @throws IOException 
-	 */
-	public static HttpURLConnection  getHttpURLConnection(String urlString) throws IOException{
-		URL url = new URL(urlString);
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setReadTimeout(10000 /* milliseconds */);
-        conn.setConnectTimeout(15000 /* milliseconds */);
-        conn.setRequestMethod("GET");
-        conn.setDoInput(true);
-		return null;
-	}
+
 }

@@ -60,4 +60,10 @@ public class MainActivity extends BaseActivity {
 		// TODO Auto-generated method stub
 
 	}
+
+	@Override
+	public void subInitContentView(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		
+	}
 }

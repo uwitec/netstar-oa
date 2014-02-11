@@ -14,6 +14,7 @@ public abstract class BaseActivity extends RoboActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		subInitContentView(savedInstanceState);
 		subInitView();
 		subInitParam();
 		subSetOnclick();
@@ -25,7 +26,6 @@ public abstract class BaseActivity extends RoboActivity implements
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-
 		// 结束Activity&从堆栈中移除
 		AppManager.getAppManager().finishActivity(this);
 	}
