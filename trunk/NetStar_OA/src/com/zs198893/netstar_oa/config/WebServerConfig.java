@@ -71,4 +71,19 @@ public class WebServerConfig {
 	public static void initOAHttpUrl(boolean isHttp){
 		serverHttpUrl = isHttp?serverHttp + serverIp + ":" + serverPort + "/" + serverName + "/":serverHttps + serverIp + ":" + serverPort + "/" + serverName + "/";
 	}
+	/**
+	 * 登录参数对应的key
+	 * @author zhangshuai
+	 *
+	 */
+	public static class LoginRequestParamKeys{
+		/**
+		 * 用户登录名
+		 */
+		public final static String LOGIN_NAME = "";
+		/**
+		 * 用户登录密码
+		 */
+		public final static String LOGIN_PWD = "";
+	}
 }

@@ -18,12 +18,9 @@ import com.zs198893.netstar_oa.login.activity.LoginActivity;
  * 
  */
 public class AppStart extends Activity implements BaseActivityInterface {
-	protected void onCreate(Bundle savedInstanceState) {
-		subInitView();
-		subInitParam();
-		subSetOnclick();
-		subRunSomeThing();
-		super.onCreate(savedInstanceState);
+	@Override
+	public void subInitContentView(Bundle savedInstanceState) {
+	
 	}
 
 	@Override
@@ -34,7 +31,7 @@ public class AppStart extends Activity implements BaseActivityInterface {
 
 	@Override
 	public void subInitParam() {
-		//初始化配置
+		// 初始化配置
 		WebServerConfig.initOAHttpUrl(true);
 	}
 
@@ -77,4 +74,5 @@ public class AppStart extends Activity implements BaseActivityInterface {
 		startActivity(intent);
 		finish();
 	}
+
 }

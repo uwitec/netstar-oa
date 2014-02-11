@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2010 Johan Nilsson <http://markupartist.com>
+<!--
+     Copyright (C) 2010 Johan Nilsson <http://markupartist.com>
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -15,6 +16,12 @@
 -->
 <resources>
 
-        <color name="list_selected">#FFEEEEEE</color>
-                <color name="list_not_selected">#FFFFFFFF</color>
+    <color name="list_selected">#FFEEEEEE</color>
+    <color name="list_not_selected">#FFFFFFFF</color>
+    <!-- start 字体颜色一 @author:zhangshuai -->
+    <color name="textcolor_1">#FF000000</color>
+    <!-- end 字体颜色一 @author:zhangshuai -->
+    <!-- start 主色 @author:zhangshuai -->
+    <color name="main_color">#FF669900</color>
+    <!-- end 主色 @author:zhangshuai -->
 </resources>

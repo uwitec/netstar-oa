@@ -1,6 +1,7 @@
 package com.zs198893.netstar_oa.daily_log.activity;
 
 import roboguice.inject.InjectView;
+import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -116,6 +117,12 @@ public class LogInputActivity extends BaseActivity {
 	public void subRunSomeThing() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void subInitContentView(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

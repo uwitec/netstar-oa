@@ -14,5 +14,7 @@
      limitations under the License.
 -->
 <resources>
-
+	<!-- start 字号一 @author:zhangshuai -->
+	<dimen name="textsize_1">14sp</dimen>
+		<!-- end 字号一 @author:zhangshuai -->
 </resources>

@@ -19,37 +19,25 @@
         <!-- start 项目名称 -->
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
+            style="@style/textview_title_style"
             android:layout_marginBottom="40dp"
-            android:background="@drawable/bg_title"
-            android:gravity="center"
-            android:text="网星协同办公系统"
-            android:textColor="@android:color/white"
-            android:textSize="23sp" />
+            android:text="网星协同办公系统" />
         <!-- end 项目名称 -->
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" 
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal" >
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:text="登录名"
-                android:textColor="#FF444444" />
+                style="@style/login_activity_tv_input_key"
+                android:text="登录名" />
 
             <EditText
                 android:id="@+id/login_et_loging_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/bg_et"
-                android:inputType="text"
-                android:padding="3dp" />
+                style="@style/login_activity_et_input_value"
+                android:inputType="text" />
         </LinearLayout>
 
         <LinearLayout
@@ -58,20 +46,13 @@
             android:orientation="horizontal" >
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:text="密    码"
-                android:textColor="#FF444444" />
+                style="@style/login_activity_tv_input_key"
+                android:text="密    码" />
 
             <EditText
                 android:id="@+id/login_et_loging_pwd"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/bg_et"
-                android:inputType="textPassword"
-                android:padding="3dp" />
+                style="@style/login_activity_et_input_value"
+                android:inputType="textPassword" />
         </LinearLayout>
 
         <LinearLayout
@@ -79,24 +60,37 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
 
-            <CheckBox
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="自动登录" />
+            <View
+                style="@style/login_activity_tv_input_key_parent"
+                android:layout_height="0dp" />
 
-            <CheckBox
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="记住密码" />
+            <LinearLayout
+                style="@style/login_activity_et_input_value_parent"
+                android:orientation="horizontal" >
+
+                <CheckBox
+                    android:id="@+id/login_cb_autologin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="自动登录"
+                    android:textSize="14sp" />
+
+                <CheckBox
+                    android:id="@+id/login_cb_savepwd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="记住密码"
+                    android:textSize="14sp" />
+            </LinearLayout>
         </LinearLayout>
 
         <Button
             android:id="@+id/login_bt_submit"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="18dp"
             android:background="@drawable/bg_bt"
             android:text="登       录"
             android:textColor="@android:color/white"

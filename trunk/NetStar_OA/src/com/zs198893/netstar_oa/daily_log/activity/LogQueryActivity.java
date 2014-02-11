@@ -2,6 +2,7 @@ package com.zs198893.netstar_oa.daily_log.activity;
 
 import roboguice.inject.InjectView;
 import android.R.anim;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -344,5 +345,10 @@ public class LogQueryActivity extends BaseActivity {
 			public TextView owner;
 			public TextView department;
 		}
+	}
+	@Override
+	public void subInitContentView(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		
 	}
 }

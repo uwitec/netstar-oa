@@ -1,29 +1,28 @@
 package com.zs198893.netstar_oa.login.activity;
 
-import static android.text.TextUtils.isEmpty;
-
 import org.apache.http.Header;
 
 import roboguice.inject.InjectView;
-import android.content.Intent;
-import android.text.TextUtils;
+import android.content.Context;
+import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.BaseJsonHttpResponseHandler;
 import com.zs198893.netstar_oa.AppContext;
 import com.zs198893.netstar_oa.BaseActivity;
 import com.zs198893.netstar_oa.R;
 import com.zs198893.netstar_oa.config.WebServerConfig;
 import com.zs198893.netstar_oa.login.engine.LoginEngine;
+import com.zs198893.netstar_oa.login.model.LoginResponseJsonModel;
 import com.zs198893.netstar_oa.model.CommonResult;
-import com.zs198893.netstar_oa.tools.DialogTool;
-import com.zs198893.netstar_oa.tools.NetworkTool;
-import com.zs198893.netstar_oa.tools.WaittingAlertDialog;
+import com.zs198893.netstar_oa.model.UserInfoModel;
 
 /**
  * OA 系统办公系统 登陆界面
@@ -32,177 +31,156 @@ import com.zs198893.netstar_oa.tools.WaittingAlertDialog;
  * 
  */
 public class LoginActivity extends BaseActivity {
+	private Context context;
 	/**
-	 * 配置按钮
-	 */
-	//@InjectView(R.id.login_bt_config)
-	Button bt_login_config;
-	/**
-	 * 用户登录名称输入框
+	 * 登录名
 	 */
 	@InjectView(R.id.login_et_loging_name)
-	EditText et_login_name;
+	EditText login_et_loging_name;
 	/**
-	 * 用户密码输入框
+	 * 登录密码
 	 */
 	@InjectView(R.id.login_et_loging_pwd)
-	EditText et_login_pwd;
+	EditText login_et_loging_pwd;
+	/**
+	 * 自动登录
+	 */
+	@InjectView(R.id.login_cb_autologin)
+	CheckBox login_cb_autologin;
+	/**
+	 * 记住密码
+	 */
+	@InjectView(R.id.login_cb_savepwd)
+	CheckBox login_cb_savepwd;
 	/**
 	 * 登录按钮
 	 */
 	@InjectView(R.id.login_bt_submit)
-	Button bt_login_submit;
+	Button login_bt_submit;
 	/**
-	 * 重置按钮
+	 * 页面view 点击事件
 	 */
-	//@InjectView(R.id.login_bt_reset)
-	Button bt_login_reset;
+	private OnViewClickListener onViewClickListener;
 	/**
-	 * 登录的业务逻辑类
+	 * 业务逻辑类
 	 */
 	private LoginEngine loginEngine;
 	/**
-	 * 点击监听类
+	 * 登录回调类
 	 */
-	private OnLoginPageClickListener onLoginPageClickListener = new OnLoginPageClickListener();
+	private LoginBaseJsonHttpResponseHandler baseJsonHttpResponseHandler;
 	/**
-	 * 弹出框工具
+	 * 网络请求类
 	 */
-	private DialogTool dialogTool;
-	/**
-	 * 等待框
-	 */
-	private WaittingAlertDialog waittingAlertDialog;
-	private CommonResult commonResult;
+	private AsyncHttpClient asyncHttpClient;
 
 	@Override
-	public void subInitView() {
+	public void subInitContentView(Bundle savedInstanceState) {
 		setContentView(R.layout.login_activity_main);
 	}
 
 	@Override
+	public void subInitView() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
 	public void subInitParam() {
-		dialogTool = new DialogTool(this);
+		// 页面view点击事件
+		onViewClickListener = new OnViewClickListener();
 		loginEngine = new LoginEngine(this);
+		context = this;
+		baseJsonHttpResponseHandler = new LoginBaseJsonHttpResponseHandler();
+		asyncHttpClient = ((AppContext) (context.getApplicationContext())).asyncHttpClient;
 	}
 
 	@Override
 	public void subSetOnclick() {
-		bt_login_submit.setOnClickListener(onLoginPageClickListener);
-		bt_login_reset.setOnClickListener(onLoginPageClickListener);
+		login_bt_submit.setOnClickListener(onViewClickListener);
 	}
 
 	@Override
 	public void subRunSomeThing() {
+		// TODO Auto-generated method stub
 
 	}
 
 	/**
-	 * 页面点击操作类
+	 * 页面 view 点击事件
 	 * 
 	 * @author zhangshuai
 	 * 
 	 */
-	private class OnLoginPageClickListener implements OnClickListener {
+	private class OnViewClickListener implements OnClickListener {
+		private UserInfoModel userInfoModel;
+		private CommonResult commonResult;
 
 		@Override
 		public void onClick(View v) {
 			switch (v.getId()) {
 			case R.id.login_bt_submit:
-				// 登录线程
-				login(et_login_name.getText().toString().trim(), et_login_pwd
-						.getText().toString().trim());
+				// 登录按钮
+				// 拼装数据
+				userInfoModel = loginEngine.initUserInfo(login_et_loging_name,
+						login_et_loging_pwd, login_cb_autologin,
+						login_cb_savepwd);
+				// 检查数据是否合法
+				commonResult = loginEngine.checkData(userInfoModel);
+				if (commonResult.isSuccess()) {
+					// 登录
+					asyncHttpClient
+							.post(WebServerConfig
+									.getUrl(WebServerConfig.loginAction),
+									loginEngine.getRequestParams(userInfoModel),
+									baseJsonHttpResponseHandler);
+				} else {
+					loginEngine.onLoginFinished(commonResult);
+				}
 				break;
-			case 1:
-				et_login_name.setText("");
-				et_login_pwd.setText("");
+			default:
 				break;
 			}
 		}
 	}
 
 	/**
-	 * 用户登录
+	 * 登录回调类
 	 * 
-	 * @param acount
-	 * @param pwd
+	 * @author zhangshuai
+	 * 
 	 */
-	private void login(String acount, String pwd) {
-		commonResult = new CommonResult();
-		do {
-			// 检查网络
-			if (!NetworkTool.isAvailable(this)) {
-				commonResult.setResult("网络不可用");
-				break;
+	private class LoginBaseJsonHttpResponseHandler extends
+			BaseJsonHttpResponseHandler<LoginResponseJsonModel> {
+		private CommonResult commonResult;
+
+		@Override
+		public void onFailure(int arg0, Header[] arg1, Throwable arg2,
+				String arg3, LoginResponseJsonModel arg4) {
+			commonResult = new CommonResult();
+			commonResult.setSuccess(false);
+			commonResult.setResult(arg2.getLocalizedMessage());
+		}
+
+		@Override
+		public void onSuccess(int arg0, Header[] arg1, String arg2,
+				LoginResponseJsonModel arg3) {
+			commonResult = new CommonResult();
+			if (true) {
+				commonResult.setSuccess(true);
+				commonResult.setResult(arg3);
+			} else {
+				commonResult.setSuccess(false);
+				commonResult.setResult("未知错误");
 			}
-			// 判断用户名帐号
-			if (isEmpty(acount) || TextUtils.isEmpty(pwd)) {
-				commonResult.setResult("用户名密码不得为空");
-				break;
-			}
-		} while (false);
-		RequestParams params = new RequestParams();
-		params.put("username", acount);
-		params.put("password", pwd);
-		params.put("login", "1");
-		//清理cookie
-		((AppContext)getApplication()).clearCookie();
-		//访问网络
-		((AppContext)getApplication()).asyncHttpClient.post(WebServerConfig.getUrl(WebServerConfig.loginAction), params,
-				new AsyncHttpResponseHandler() {
-					
-					@Override
-					public void onFinish() {
+		}
 
-						super.onFinish();
-					}
-
-					@Override
-					public void onStart() {
-						// 开启等待界面
-						waittingAlertDialog = dialogTool.getWaittingDialog(-1,
-								"登陆中，请稍候。。。");
-						waittingAlertDialog.show();
-						commonResult = new CommonResult();
-						super.onStart();
-					}
-
-					@Override
-					public void onFailure(int statusCode, Header[] headers,
-							Throwable error, String content) {
-						commonResult.setSuccess(false);
-						commonResult.setResult("登录失败");
-						checkResult();
-					}
-
-					@Override
-					public void onSuccess(int statusCode, String content) {
-						if(content.contains("修改密码")){
-							commonResult.setSuccess(true);
-							commonResult.setResult("登录成功");
-						}else{
-							commonResult.setSuccess(false);
-							commonResult.setResult("登录失败");
-						}
-						checkResult();
-					}
-					public void checkResult(){
-						waittingAlertDialog.dismiss();
-						waittingAlertDialog = null;
-						// 判断登录是否成功
-						if (commonResult.isSuccess()) {
-							// 成功，跳转界面
-							Intent intent = new Intent(
-									LoginActivity.this,
-									com.zs198893.netstar_oa.Main.activity.MainActivity.class);
-							startActivity(intent);
-							finish();
-						} else {
-							// 失败，显示原因
-							Toast.makeText(LoginActivity.this, (String)commonResult.getResult(),
-									Toast.LENGTH_SHORT).show();
-						}
-					}
-				});
+		@Override
+		protected LoginResponseJsonModel parseResponse(String arg0)
+				throws Throwable {
+			return new ObjectMapper().readValues(
+					new JsonFactory().createParser(arg0),
+					LoginResponseJsonModel.class).next();
+		}
 	}
 }

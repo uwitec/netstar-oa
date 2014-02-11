@@ -1,10 +1,17 @@
 package com.zs198893.netstar_oa;
+
+import android.os.Bundle;
+
 /**
  * 
  * @author zhangshuai
  *
  */
 public interface BaseActivityInterface {
+	/**
+	 * 设置布局
+	 */
+	public void subInitContentView(Bundle savedInstanceState);
 	/**
 	 * 初始化view
 	 */
