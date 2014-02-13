@@ -12,7 +12,7 @@ import android.os.Bundle;
 public abstract class BaseActivity extends RoboActivity implements
 		BaseActivityInterface {
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		subInitContentView(savedInstanceState);
 		subInitView();
