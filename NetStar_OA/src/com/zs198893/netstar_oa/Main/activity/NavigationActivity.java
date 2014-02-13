@@ -1,4 +1,4 @@
-package com.zs198893.netstar_oa.Main.activity;
+package com.zs198893.netstar_oa.main.activity;
 
 import android.os.Bundle;
 
