@@ -25,7 +25,7 @@ public class MainActivity extends BaseActivity {
 
 	@Override
 	public void subInitView() {
-		setContentView(R.layout.main_layout);
+		setContentView(R.layout.main_tab_layout);
 
 	}
 
