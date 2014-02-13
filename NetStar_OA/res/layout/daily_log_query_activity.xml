@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFEEEEEE"
+    android:orientation="vertical" >
+
+    <!-- 所属部门 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout style="@style/daily_log_query_1" >
+
+            <TextView
+                style="@style/daily_log_query_name"
+                android:text="所属部门" />
+
+            <LinearLayout
+                style="@style/daily_log_query_1"
+                android:layout_weight="1" >
+
+                <EditText
+                    android:id="@+id/daily_log_query_et_type_department"
+                    style="@style/daily_log_query_value"
+                    android:text="" />
+            </LinearLayout>
+        </LinearLayout>
+        <!-- 创建人 -->
+
+        <LinearLayout style="@style/daily_log_query_1" >
+
+            <TextView
+                style="@style/daily_log_query_name"
+                android:text="创建人" />
+
+            <LinearLayout
+                style="@style/daily_log_query_1"
+                android:layout_weight="1" >
+
+                <EditText
+                    android:id="@+id/daily_log_query_et_type_owner"
+                    style="@style/daily_log_query_value"
+                    android:text="" />
+            </LinearLayout>
+        </LinearLayout>
+        <!-- 日期 -->
+
+        <LinearLayout style="@style/daily_log_query_1" >
+
+            <TextView
+                style="@style/daily_log_query_name"
+                android:text="日期" />
+
+            <LinearLayout
+                style="@style/daily_log_query_1"
+                android:layout_weight="1" >
+
+                <EditText
+                    android:id="@+id/daily_log_query_et_type_date1"
+                    style="@style/daily_log_query_value"
+                    android:focusable="false"
+                    android:text="" />
+
+                <EditText
+                    android:id="@+id/daily_log_query_et_type_date2"
+                    style="@style/daily_log_query_value"
+                    android:focusable="false"
+                    android:text="" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/daily_log_query_bt_query"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="查询" />
+
+            <Button
+                android:id="@+id/daily_log_query_bt_lastpage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="上页" />
+
+            <TextView
+                android:id="@+id/daily_log_query_tv_page_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="0/0 页"
+                android:textColor="#FF000000" />
+
+            <Button
+                android:id="@+id/daily_log_query_bt_nextpage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="下页" />
+
+            <EditText
+                android:id="@+id/daily_log_query_et_page"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#FF000000" />
+
+            <Button
+                android:id="@+id/daily_log_query_bt_jump"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="跳转" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" >
+	<HorizontalScrollView 
+	                android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+        <ListView
+            android:id="@+id/daily_log_query_lv_date_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="#FFFFFFFF" >
+        </ListView>
+</HorizontalScrollView>
+        <WebView
+            android:id="@+id/daily_log_query_wb_conent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+</LinearLayout>

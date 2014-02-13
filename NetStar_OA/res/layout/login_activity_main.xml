@@ -1,0 +1,137 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".LoginActivity" >
+
+    <!-- start 登录form -->
+
+    <LinearLayout
+        android:id="@+id/login_form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="40dp" >
+
+        <!-- start 项目名称 -->
+
+        <TextView
+            style="@style/textview_title_style"
+            android:layout_marginBottom="55dp"
+            android:text="网星协同办公系统" />
+        <!-- end 项目名称 -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                style="@style/login_activity_tv_input_key"
+                android:text="登录名" />
+
+            <EditText
+                android:id="@+id/login_et_loging_name"
+                style="@style/login_activity_et_input_value"
+                android:inputType="text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                style="@style/login_activity_tv_input_key"
+                android:text="密    码" />
+
+            <EditText
+                android:id="@+id/login_et_loging_pwd"
+                style="@style/login_activity_et_input_value"
+                android:inputType="textPassword" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <View
+                style="@style/login_activity_tv_input_key_parent"
+                android:layout_height="0dp" />
+
+            <LinearLayout
+                style="@style/login_activity_et_input_value_parent"
+                android:orientation="horizontal" >
+
+                <CheckBox
+                    android:id="@+id/login_cb_autologin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="自动登录"
+                    android:textColor="@color/textcolor_1"
+                    android:textSize="@dimen/textsize_1" />
+
+                <CheckBox
+                    android:id="@+id/login_cb_savepwd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="记住密码"
+                    android:textColor="@color/textcolor_1"
+                    android:textSize="@dimen/textsize_1" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/login_bt_submit"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/bg_bt"
+            android:text="登       录"
+            android:textColor="@android:color/white"
+            android:textSize="15sp" />
+        <!-- start 占位 -->
+
+        <View
+            android:id="@+id/free_room"
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+        <!-- end 占位 -->
+    </LinearLayout>
+    <!-- end 登录form -->
+    <!-- start 版权 -->
+
+    <LinearLayout
+        android:id="@+id/ll_copyright"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center|bottom"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="23dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/company_logo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:text="版权所有：河北网星软件有限公司"
+            android:textColor="#FF444444"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+    <!-- end 版权 -->
+
+</RelativeLayout>
