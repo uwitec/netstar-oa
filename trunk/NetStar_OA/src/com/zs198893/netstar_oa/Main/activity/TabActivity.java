@@ -1,4 +1,4 @@
-package com.zs198893.netstar_oa.Main.activity;
+package com.zs198893.netstar_oa.main.activity;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import com.zs198893.netstar_oa.BaseActivity;
 import com.zs198893.netstar_oa.R;
-import com.zs198893.netstar_oa.Main.model.TabBottomItemModel;
+import com.zs198893.netstar_oa.main.model.TabBottomItemModel;
 
 /**
  * 仿tabhost的基类

@@ -1,4 +1,4 @@
-package com.zs198893.netstar_oa.Main.model;
+package com.zs198893.netstar_oa.main.model;
 
 import android.view.View;
 import android.widget.ImageView;
