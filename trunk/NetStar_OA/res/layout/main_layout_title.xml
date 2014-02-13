@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_title"
+    style="@style/textview_title_style"
+    android:layout_alignParentTop="true"
+    android:text="网星协同办公系统" />
