@@ -24,7 +24,7 @@ public class WebServerConfig {
 	/**
 	 * 服务器ip
 	 */
-	private static String serverIp= "115.28.22.128";
+	private static String serverIp= "10.129.213.171";
 	/**
 	 * 服务器 端口
 	 */
@@ -40,7 +40,7 @@ public class WebServerConfig {
 	/**
 	 * 登录的接口
 	 */
-	public static String loginAction = "LoginValidation";
+	public static String loginAction = "MobileLogin";
 	/**
 	 * 查询日志列表接口 LogQuery/search_Content.json
 	 */
@@ -80,10 +80,10 @@ public class WebServerConfig {
 		/**
 		 * 用户登录名
 		 */
-		public final static String LOGIN_NAME = "";
+		public final static String LOGIN_NAME = "userAccount";
 		/**
 		 * 用户登录密码
 		 */
-		public final static String LOGIN_PWD = "";
+		public final static String LOGIN_PWD = "password";
 	}
 }

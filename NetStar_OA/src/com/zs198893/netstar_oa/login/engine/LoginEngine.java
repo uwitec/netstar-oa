@@ -1,5 +1,7 @@
 package com.zs198893.netstar_oa.login.engine;
 
+import org.apache.http.Header;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -8,10 +10,15 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.BaseJsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.zs198893.netstar_oa.AppContext;
-import com.zs198893.netstar_oa.config.SharedPreferencesConfig;
+import com.zs198893.netstar_oa.config.SharedPreferencesKeyConfig;
 import com.zs198893.netstar_oa.config.WebServerConfig;
+import com.zs198893.netstar_oa.login.model.LoginResponseJsonModel;
 import com.zs198893.netstar_oa.model.CommonResult;
 import com.zs198893.netstar_oa.model.UserInfoModel;
 import com.zs198893.netstar_oa.tools.CommonTool;
@@ -40,14 +47,24 @@ public class LoginEngine {
 	 * 配置文件操作对象
 	 */
 	private Editor editor;
-
+	/**
+	 * 网络请求类
+	 */
+	private AsyncHttpClient asyncHttpClient;
+	/**
+	 * 登录回调类
+	 */
+	private LoginBaseJsonHttpResponseHandler baseJsonHttpResponseHandler;
+	
 	public LoginEngine(Context context) {
 		super();
 		this.context = context;
 		sharedPreferences = context.getSharedPreferences(
-				SharedPreferencesConfig.DEFAULT_SP_FILE_NAME,
+				SharedPreferencesKeyConfig.DEFAULT_SP_FILE_NAME,
 				Context.MODE_PRIVATE);
 		editor = sharedPreferences.edit();
+		asyncHttpClient = ((AppContext) (context.getApplicationContext())).asyncHttpClient;
+		baseJsonHttpResponseHandler = new LoginBaseJsonHttpResponseHandler();
 	}
 
 	/**
@@ -120,10 +137,10 @@ public class LoginEngine {
 	 * @param userInfoModel 用户详情对象
 	 * @return 请求参数
 	 */
-	public RequestParams getRequestParams(UserInfoModel userInfoModel){
+	public RequestParams getRequestParams(String userName,  String userPassword){
 		RequestParams params = new RequestParams();
-		params.add(WebServerConfig.LoginRequestParamKeys.LOGIN_NAME, userInfoModel.getUserLoginName());
-		params.add(WebServerConfig.LoginRequestParamKeys.LOGIN_PWD, userInfoModel.getUserLoginPWD());
+		params.add(WebServerConfig.LoginRequestParamKeys.LOGIN_NAME, userName);
+		params.add(WebServerConfig.LoginRequestParamKeys.LOGIN_PWD, userPassword);
 		return params;
 	}
 	/**
@@ -139,6 +156,74 @@ public class LoginEngine {
 		}else{
 			Toast.makeText(context, (String) commonResult.getResult(),
 					Toast.LENGTH_SHORT).show();
+		}
+	}
+	/**
+	 * 当请求结束后
+	 * @param commonResult 请求的结果
+	 */
+	public CommonResult startLogin(EditText userName, EditText userPassword){
+		CommonResult commonResult = new CommonResult();
+		commonResult.setSuccess(false);
+		commonResult.setResult("未知错误");
+		String userNameStr = userName.getText().toString();
+		String userPasswordStr = userPassword.getText().toString();
+		do{
+			//验证登录帐号
+			if(TextUtils.isEmpty(userNameStr)){
+				commonResult.setSuccess(false);
+				commonResult.setResult("登录帐号不得为空");
+			}
+			//验证登录密码
+			if(TextUtils.isEmpty(userPasswordStr)){
+				commonResult.setSuccess(false);
+				commonResult.setResult("登录密码不得为空");
+			}
+			asyncHttpClient.post(
+						WebServerConfig.getUrl(WebServerConfig.loginAction),
+						getRequestParams(userNameStr, userPasswordStr),
+					baseJsonHttpResponseHandler);
+		}while(false);
+
+		return commonResult;
+	}
+	/**
+	 * 登录回调类
+	 * 
+	 * @author zhangshuai
+	 * 
+	 */
+	private class LoginBaseJsonHttpResponseHandler extends
+			BaseJsonHttpResponseHandler<LoginResponseJsonModel> {
+		private CommonResult commonResult;
+
+		@Override
+		public void onFailure(int arg0, Header[] arg1, Throwable arg2,
+				String arg3, LoginResponseJsonModel arg4) {
+			commonResult = new CommonResult();
+			commonResult.setSuccess(false);
+			commonResult.setResult(arg2.getLocalizedMessage());
+		}
+
+		@Override
+		public void onSuccess(int arg0, Header[] arg1, String arg2,
+				LoginResponseJsonModel arg3) {
+			commonResult = new CommonResult();
+			if (true) {
+				commonResult.setSuccess(true);
+				commonResult.setResult(arg3);
+			} else {
+				commonResult.setSuccess(false);
+				commonResult.setResult("未知错误");
+			}
+		}
+
+		@Override
+		protected LoginResponseJsonModel parseResponse(String arg0)
+				throws Throwable {
+			return new ObjectMapper().readValues(
+					new JsonFactory().createParser(arg0),
+					LoginResponseJsonModel.class).next();
 		}
 	}
 }

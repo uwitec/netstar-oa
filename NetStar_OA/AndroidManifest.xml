@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme" android:name=".AppContext">
 
         <!-- 登录模块 @author:zhangshuai -->
-        <activity android:name=".Main.activity.TabActivity" android:theme="@android:style/Theme.Black.NoTitleBar" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation" android:launchMode="singleTask">
+        <activity android:name=".login.activity.LoginActivity" android:theme="@android:style/Theme.Black.NoTitleBar" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation" android:launchMode="singleTask">
                         <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

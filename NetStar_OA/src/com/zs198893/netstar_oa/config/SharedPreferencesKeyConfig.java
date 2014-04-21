@@ -4,11 +4,11 @@ package com.zs198893.netstar_oa.config;
  * @author zhangshuai
  *
  */
-public class SharedPreferencesConfig {
+public class SharedPreferencesKeyConfig {
 	/**
-	 * 默认配置文件名
+	 * sharedprefernce 配置文件的名称
 	 */
-	public final static  String DEFAULT_SP_FILE_NAME = "default_sp_file_name";
+	public final static  String DEFAULT_SP_FILE_NAME = "DefaultConfigFile";
 	/**
 	 * 登陆名
 	 */

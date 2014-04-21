@@ -1,4 +1,7 @@
 package com.zs198893.netstar_oa.config;
+
+import com.zs198893.netstar_oa.login.model.LoginResponseJsonModel;
+
 /**
  * 基本配置
  * @author Administrator
@@ -6,9 +9,9 @@ package com.zs198893.netstar_oa.config;
  */
 public class DefaultConfig {
 	/**
-	 * sharedprefernce 配置文件的名称
+	 * 用户对象模型
 	 */
-	public static String DefaultConfigFileName = "DefaultConfigFile";
+	public static LoginResponseJsonModel loginResponseJsonModel = new LoginResponseJsonModel();
 	/**
 	 * 日志可以看几行
 	 */

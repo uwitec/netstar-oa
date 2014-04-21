@@ -36,10 +36,9 @@ public class TabBottomItemModel {
 	 * @param contentView
 	 */
 	public TabBottomItemModel(View contentView) {
-		TabBottomItemModel tabBottomItemModel = new TabBottomItemModel();
-		tabBottomItemModel.setContentView(contentView);
-		tabBottomItemModel.setTitleTV((TextView)contentView.findViewById(R.id.main_tab_activity_tv));
-		tabBottomItemModel.setBgIV((ImageView)contentView.findViewById(R.id.main_tab_activity_iv));
+		setContentView(contentView);
+		setTitleTV((TextView)contentView.findViewById(R.id.main_tab_activity_tv));
+		setBgIV((ImageView)contentView.findViewById(R.id.main_tab_activity_iv));
 	}
 	public View getContentView() {
 		return contentView;
