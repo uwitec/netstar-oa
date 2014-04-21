@@ -65,14 +65,7 @@ public class LoginActivity extends BaseActivity {
 	 * 业务逻辑类
 	 */
 	private LoginEngine loginEngine;
-	/**
-	 * 登录回调类
-	 */
-	private LoginBaseJsonHttpResponseHandler baseJsonHttpResponseHandler;
-	/**
-	 * 网络请求类
-	 */
-	private AsyncHttpClient asyncHttpClient;
+
 
 	@Override
 	public void subInitContentView(Bundle savedInstanceState) {
@@ -91,8 +84,7 @@ public class LoginActivity extends BaseActivity {
 		onViewClickListener = new OnViewClickListener();
 		loginEngine = new LoginEngine(this);
 		context = this;
-		baseJsonHttpResponseHandler = new LoginBaseJsonHttpResponseHandler();
-		asyncHttpClient = ((AppContext) (context.getApplicationContext())).asyncHttpClient;
+
 	}
 
 	@Override
@@ -121,22 +113,8 @@ public class LoginActivity extends BaseActivity {
 			switch (v.getId()) {
 			case R.id.login_bt_submit:
 				// 登录按钮
-				// 拼装数据
-				userInfoModel = loginEngine.initUserInfo(login_et_loging_name,
-						login_et_loging_pwd, login_cb_autologin,
-						login_cb_savepwd);
-				// 检查数据是否合法
-				commonResult = loginEngine.checkData(userInfoModel);
-				if (commonResult.isSuccess()) {
-					// 登录
-					asyncHttpClient
-							.post(WebServerConfig
-									.getUrl(WebServerConfig.loginAction),
-									loginEngine.getRequestParams(userInfoModel),
-									baseJsonHttpResponseHandler);
-				} else {
-					loginEngine.onLoginFinished(commonResult);
-				}
+				// 登录
+
 				break;
 			default:
 				break;
@@ -144,43 +122,5 @@ public class LoginActivity extends BaseActivity {
 		}
 	}
 
-	/**
-	 * 登录回调类
-	 * 
-	 * @author zhangshuai
-	 * 
-	 */
-	private class LoginBaseJsonHttpResponseHandler extends
-			BaseJsonHttpResponseHandler<LoginResponseJsonModel> {
-		private CommonResult commonResult;
 
-		@Override
-		public void onFailure(int arg0, Header[] arg1, Throwable arg2,
-				String arg3, LoginResponseJsonModel arg4) {
-			commonResult = new CommonResult();
-			commonResult.setSuccess(false);
-			commonResult.setResult(arg2.getLocalizedMessage());
-		}
-
-		@Override
-		public void onSuccess(int arg0, Header[] arg1, String arg2,
-				LoginResponseJsonModel arg3) {
-			commonResult = new CommonResult();
-			if (true) {
-				commonResult.setSuccess(true);
-				commonResult.setResult(arg3);
-			} else {
-				commonResult.setSuccess(false);
-				commonResult.setResult("未知错误");
-			}
-		}
-
-		@Override
-		protected LoginResponseJsonModel parseResponse(String arg0)
-				throws Throwable {
-			return new ObjectMapper().readValues(
-					new JsonFactory().createParser(arg0),
-					LoginResponseJsonModel.class).next();
-		}
-	}
 }

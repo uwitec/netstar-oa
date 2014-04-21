@@ -8,7 +8,7 @@ import android.text.TextUtils;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.PersistentCookieStore;
-import com.zs198893.netstar_oa.config.SharedPreferencesConfig;
+import com.zs198893.netstar_oa.config.SharedPreferencesKeyConfig;
 import com.zs198893.netstar_oa.model.CommonResult;
 import com.zs198893.netstar_oa.model.UserInfoModel;
 
@@ -42,7 +42,7 @@ public class AppContext extends Application {
 		asyncHttpClientCookieStore = new PersistentCookieStore(this);
 		asyncHttpClient.setCookieStore(asyncHttpClientCookieStore);
 		sharedPreferences = getSharedPreferences(
-				SharedPreferencesConfig.DEFAULT_SP_FILE_NAME,
+				SharedPreferencesKeyConfig.DEFAULT_SP_FILE_NAME,
 				Context.MODE_PRIVATE);
 		editor = sharedPreferences.edit();
 		super.onCreate();
@@ -57,20 +57,20 @@ public class AppContext extends Application {
 		UserInfoModel infoModel = new UserInfoModel();
 		// 获得用户登录名
 		infoModel.setUserLoginName(sharedPreferences.getString(
-				SharedPreferencesConfig.LOGIN_USER_CODE, ""));
+				SharedPreferencesKeyConfig.LOGIN_USER_CODE, ""));
 		// 通过判断用户登录名来判断，上次有没有登陆成功
 		if (TextUtils.isEmpty(infoModel.getUserLoginName())) {
 			infoModel = null;
 		} else {
 			// 获得用户登录密码
 			infoModel.setUserLoginPWD(sharedPreferences.getString(
-					SharedPreferencesConfig.LOGIN_USER_PWD, ""));
+					SharedPreferencesKeyConfig.LOGIN_USER_PWD, ""));
 			// 是否自动登录
 			infoModel.setAuto_login(sharedPreferences.getBoolean(
-					SharedPreferencesConfig.LOGIN_AUTO_LOGIN, false));
+					SharedPreferencesKeyConfig.LOGIN_AUTO_LOGIN, false));
 			// 是否保存密码
 			infoModel.setSave_pwd(sharedPreferences.getBoolean(
-					SharedPreferencesConfig.LOGIN_SAVE_PWD, false));
+					SharedPreferencesKeyConfig.LOGIN_SAVE_PWD, false));
 		}
 		return infoModel;
 	}
@@ -86,13 +86,13 @@ public class AppContext extends Application {
 		CommonResult commonResult = new CommonResult();
 		commonResult.setSuccess(true);
 		try {
-			editor.putString(SharedPreferencesConfig.LOGIN_USER_CODE,
+			editor.putString(SharedPreferencesKeyConfig.LOGIN_USER_CODE,
 					userInfoModel.getUserLoginName());
-			editor.putString(SharedPreferencesConfig.LOGIN_USER_PWD,
+			editor.putString(SharedPreferencesKeyConfig.LOGIN_USER_PWD,
 					userInfoModel.getUserLoginPWD());
-			editor.putBoolean(SharedPreferencesConfig.LOGIN_AUTO_LOGIN,
+			editor.putBoolean(SharedPreferencesKeyConfig.LOGIN_AUTO_LOGIN,
 					userInfoModel.isAuto_login());
-			editor.putBoolean(SharedPreferencesConfig.LOGIN_SAVE_PWD,
+			editor.putBoolean(SharedPreferencesKeyConfig.LOGIN_SAVE_PWD,
 					userInfoModel.isSave_pwd());
 			editor.commit();
 		} catch (Exception e) {
